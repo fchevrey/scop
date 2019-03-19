@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 15:10:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:16:14 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/03/19 15:33:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef STRUCT_H
+# define STRUCT_H
+
 #include "scop.h"
 
-void		ft_exit(t_data **data)
+typedef union			u_color
 {
-	ft_putendl("quitting...");
-	if (!data || !*data)
-		exit(EXIT_SUCCESS);
-	free_win(&(*data)->win);
-	free(*data);
-	*data = NULL;
-	SDL_Quit();
-	exit(EXIT_SUCCESS);
-}
+	uint32_t			c;
+	struct				s_argb
+	{
+		uint8_t			b;
+		uint8_t			g;
+		uint8_t			r;
+		uint8_t			a;
+	}					argb;
+}						t_color;
+
+typedef struct		s_data
+{
+	t_win		*win;
+}					t_data;
+
+#endif

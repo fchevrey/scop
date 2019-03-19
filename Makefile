@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/03/19 14:00:03 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/03/19 15:31:30 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,15 @@ ORANGE = [038;2;239;138;5
 ## Sources ##
 SRCS_DIR = srcs
 
-SRCS = main.c ft_exit.c data_init.c\
+SRCS = main.c ft_error.c ft_exit.c \
+	   \
+	   event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
+	   event/ft_mouse.c 
 
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
 OBJS_DIR = ./objs
-OBJS_SUB_DIRS = parser
+OBJS_SUB_DIRS = parser rendering event
 OBJS_PRE = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
 ## Lib dirs ##
@@ -44,7 +47,7 @@ SDL_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/sdl2)
 
 SDL_VER = 2.0.8
 
-HEADER_DIR=includes/
+HEADER_DIR = includes/
 
 ## Includes ##
 INC = -I ./$(HEADER_DIR)
@@ -52,22 +55,26 @@ SDL2_INC = $(shell sh ./lib/sdl2/bin/sdl2-config --cflags)
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
-			$(SDL2_INC) 
+			$(SDL2_INC)
 
-HEADER = defines.h event.h main.h  parse.h struct.h
+HEADER = defines.h scop.h  parser.h struct.h event.h rendering.h
+
 HEADERS = $(addprefix $(HEADER_DIR), $(HEADER))
+
 INCS = $(INC) $(LIB_INCS)
 
 ## FLAGS ##
 CC = gcc
+
 SDL2_LFLAGS = $(shell sh ./lib/sdl2/bin/sdl2-config --libs)
 
 LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			-lm \
-			$(SDL2_LFLAGS) \
-CFLAGS = -Wall -Wextra -Werror
+			$(SDL2_LFLAGS)
+
+CFLAGS = #-Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033$(GREEN)2m✓\t\033$(GREEN)mDONE !\033[0m\
@@ -81,7 +88,6 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADERS)
 	@echo "\033$(PURPLE)m⧖	Creating	$@\033[0m"
 	@export PKG_CONFIG_PATH=$(PKG_CONFIG_PATH):$(addprefix $(SDL_PATH), /lib/pkgconfig) &&\
 	gcc -c -o $@ $< $(CFLAGS) $(INCS)
-	@#export LD_LIBRARY_PATH=$(LD_LIBRARY_PATH):$(addprefix $(VORBIS_MIXER_PATH), /lib) &&\
 
 $(OBJS_DIR):
 	@echo "\033$(CYAN)m➼	\033$(CYAN)mCreating $(DIR_NAME)'s objects \

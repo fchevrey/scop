@@ -1,26 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 15:10:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:16:14 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/03/19 14:57:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "scop.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-void		ft_exit(t_data **data)
-{
-	ft_putendl("quitting...");
-	if (!data || !*data)
-		exit(EXIT_SUCCESS);
-	free_win(&(*data)->win);
-	free(*data);
-	*data = NULL;
-	SDL_Quit();
-	exit(EXIT_SUCCESS);
-}
+
+#endif

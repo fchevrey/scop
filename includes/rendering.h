@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 15:10:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:16:14 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/03/19 15:29:13 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/03/19 15:29:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "scop.h"
+#ifndef RENDERING_H
+# define RENDERING_H
 
-void		ft_exit(t_data **data)
-{
-	ft_putendl("quitting...");
-	if (!data || !*data)
-		exit(EXIT_SUCCESS);
-	free_win(&(*data)->win);
-	free(*data);
-	*data = NULL;
-	SDL_Quit();
-	exit(EXIT_SUCCESS);
-}
+#endif

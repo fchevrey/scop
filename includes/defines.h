@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 15:10:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:16:14 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/03/19 14:52:26 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/03/19 14:53:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "scop.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-void		ft_exit(t_data **data)
-{
-	ft_putendl("quitting...");
-	if (!data || !*data)
-		exit(EXIT_SUCCESS);
-	free_win(&(*data)->win);
-	free(*data);
-	*data = NULL;
-	SDL_Quit();
-	exit(EXIT_SUCCESS);
-}
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+
+#endif
