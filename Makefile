@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/03/19 15:31:30 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/03/19 20:04:17 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,21 +41,26 @@ LIBFT_DIR = $(LIB_DIR)/libft
 LIBMYSDL_DIR = $(LIB_DIR)/libmysdl
 LIBPT_DIR = $(LIB_DIR)/libpt
 
-## Macros for sdl2 installation ##
+## Macros for extern library installation ##
+SDL_VER = 2.0.9
+GLEW_VER = 2.1.0
+
 MAIN_DIR_PATH = $(shell pwd)
 SDL_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/sdl2)
-
-SDL_VER = 2.0.8
+GLEW_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/glew-$(GLEW_VER))
 
 HEADER_DIR = includes/
 
 ## Includes ##
 INC = -I ./$(HEADER_DIR)
+
 SDL2_INC = $(shell sh ./lib/sdl2/bin/sdl2-config --cflags)
+
 LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
-			$(SDL2_INC)
+			$(SDL2_INC) \
+			-I $(GLEW_PATH)/include/GL/
 
 HEADER = defines.h scop.h  parser.h struct.h event.h rendering.h
 
@@ -72,7 +77,11 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			-lm \
-			$(SDL2_LFLAGS)
+			$(SDL2_LFLAGS)\
+			-L $(GLEW_PATH)/lib/ -lGLEW
+
+FRAMEWORK = -framework Carbon -framework OpenGL -framework GLUT
+#LINUX = -lGL -lGLU -lglut
 
 CFLAGS = #-Wall -Wextra -Werror
 
@@ -97,7 +106,7 @@ $(OBJS_DIR):
 
 $(NAME): $(OBJS_DIR) $(OBJS_PRE) $(HEADERS)
 	@echo "\033$(GREEN)m➼\t\033$(GREEN)32m Creating $(DIR_NAME)'s executable\033[0m"
-	@$(CC) -o $(NAME) $(CFLAGS) $(OBJS_PRE) $(LFLAGS)
+	@$(CC) -o $(NAME) $(CFLAGS) $(OBJS_PRE) $(LFLAGS) $(FRAMEWORK)
 	@$(eval MESSAGE = $(DONE_MESSAGE))
 
 rm_obj:
@@ -154,6 +163,28 @@ SDL2 :
 	else \
 		echo "\033$(GREEN)m✓\tSDl2-$(SDL_VER) already installed\033[0m"; \
 	fi
+	@if [ ! -d "./lib/glew-$(GLEW_VER)" ]; then \
+		echo "\033$(PINK)m⚠\tGLEW is not installed ! ...\033[0m"; \
+		echo "\033$(CYAN)m➼\tCompiling GLEW-$(GLEW_VER) ...\033[0m"; \
+		echo "\033$(CYAN)m➼\tCompiling GLEW-$(GLEW_VER) ...\033[0m"; \
+		printf "\r\033$(YELLOW)m\tIn 3 ...\033[0m"; sleep 1; \
+		printf "\r\033$(YELLOW)m\tIn 2 ...\033[0m"; sleep 1; \
+		printf "\r\033$(YELLOW)3m\tIn 1 ...\033[0m"; sleep 1; printf "\n"; \
+		echo "\033$(CYAN)m $(GLEW_PATH)\033[0m"; \
+		curl -OL https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download && \
+		tar -zxvf download && \
+		mkdir -p $(GLEW_PATH) &&\
+		cd  glew-$(GLEW_VER) && \
+		export GLEW_DEST=$(GLEW_PATH)/ && \
+			make && \
+		cd .. && \
+		echo "\033$(GREEN)m✓\tglew-$(GLEW_VER) installed !\033[0m"; \
+	else \
+		echo "\033$(GREEN)m✓\tglew-$(GLEW_VER) already installed\033[0m"; \
+	fi
+		#mv glew-$(GLEW_VER) lib/ &&\
+		#rm download;\
+		#echo "\033$(CYAN)m $(GLEW_PATH)\033[0m"; \
 
 LIBFT:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"
