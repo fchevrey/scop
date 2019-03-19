@@ -1,0 +1,14 @@
+#Misc
+*.dSYM 
+*.DS_Store
+*.a
+*.o
+
+#downloaded library
+sdl2/
+sdl2_mixer/
+sdl2_ttf/
+
+#executable
+a.out
+scop
