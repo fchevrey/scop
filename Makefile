@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/03/19 20:04:17 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/03/20 16:45:57 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,9 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			$(SDL2_LFLAGS)\
 			-L $(GLEW_PATH)/lib/ -lGLEW
 
-FRAMEWORK = -framework Carbon -framework OpenGL -framework GLUT
+#FRAMEWORK = #-framework Carbon -framework OpenGL -framework GLUT
+FRAMEWORK =  -framework OpenGL -framework GLUT
+#FRAMEWORK =  -framework GLUT
 #LINUX = -lGL -lGLU -lglut
 
 CFLAGS = #-Wall -Wextra -Werror

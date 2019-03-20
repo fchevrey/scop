@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 20:08:09 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/03/20 16:52:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ t_win		*wingl_new(t_point size, char *title)
 	win->size = size;
 	return (win);
 }
+void	myDisplayFunc() 
+{
+		  // gfx fun
+}
 
 static int		init_library(t_data *data, int *ac, char **av)
 {
@@ -48,7 +52,9 @@ static int		init_library(t_data *data, int *ac, char **av)
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);*/
 	//glutInit(ac, av);
+	glutInitDisplayMode(GLUT_3_2_CORE_PROFILE);
 	glutCreateWindow("GLEW Test");
+	glutDisplayFunc(myDisplayFunc);
 	GLenum err = glewInit();
 	if(err != GLEW_OK)
 		return (ft_error(glewGetErrorString(err), NULL, NULL));
@@ -56,6 +62,7 @@ static int		init_library(t_data *data, int *ac, char **av)
 		ft_putendl("chouette");
 	//if (!(data->gl_ptr = SDL_GL_CreateContext(data->win->ptr)))
 	//	return (ft_error(SDL_GetError(), NULL, NULL));
+	glutMainLoop();
 	return (1);
 }
 
