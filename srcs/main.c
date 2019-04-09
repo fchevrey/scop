@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/20 16:52:31 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:57:05 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,11 @@ static int		init_library(t_data *data, int *ac, char **av)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);*/
-	//glutInit(ac, av);
-	glutInitDisplayMode(GLUT_3_2_CORE_PROFILE);
-	glutCreateWindow("GLEW Test");
-	glutDisplayFunc(myDisplayFunc);
-	GLenum err = glewInit();
-	if(err != GLEW_OK)
-		return (ft_error(glewGetErrorString(err), NULL, NULL));
-	if (GLEW_VERSION_4_0)
-		ft_putendl("chouette");
+	if (!glfwInit())
+		return  ft_error("GLWl init failed", NULL, NULL);
+
 	//if (!(data->gl_ptr = SDL_GL_CreateContext(data->win->ptr)))
 	//	return (ft_error(SDL_GetError(), NULL, NULL));
-	glutMainLoop();
 	return (1);
 }
 
@@ -93,6 +86,7 @@ int				main(int ac, char **av)
 		return (EXIT_SUCCESS);
 	//test_vertices(data);
 	main_loop(data);
+	glfwTerminate();
 	ft_exit(&data);
 	return (EXIT_SUCCESS);
 }
