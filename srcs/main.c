@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/09 18:47:12 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:53:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ static int		init_library(t_data *data, int *ac, char **av)
 	  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 	  SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);*/
-	glewExperimental = GL_TRUE;
+	//glewExperimental = GL_TRUE;
 	ft_putstr("A\n");
-	glewInit();
+	//glewInit();
 	ft_putstr("B\n");
 	if (!glfwInit())
 		return  ft_error("GLWl init failed", NULL, NULL);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	//if (!(data->gl_ptr = SDL_GL_CreateContext(data->win->ptr)))
@@ -77,7 +77,7 @@ void displayMe(void)
 void			test_vertices(t_data *data)
 {
 	//t_ptfl		vertices[3];
-	float		vert[] = {1.0, 1.0, 0.0, 0.0, 0.5, 0.5};
+	GLfloat		vert[] = {1.0, 1.0, 0.0, 0.0, 0.5, 0.5};
 
 	/*vertices[0] = ptfl_set(-0.5, -0.5);
 	  vertices[1] = ptfl_set(0.0, 0.5);
@@ -115,7 +115,7 @@ int				main(int ac, char **av)
 	glEnable(GL_DEPTH_TEST);
 	while(!glfwWindowShouldClose(win))
 	{
-		//test_vertices(data);
+		test_vertices(data);
 		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		displayMe();
 		glfwSwapBuffers(win);
