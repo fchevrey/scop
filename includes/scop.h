@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:53:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 20:01:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:55:13 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@
 # include "libmysdl.h"
 # include "defines.h"
 # include "struct.h"
-# include "glew.h"
 # ifdef __APPLE__
 //#  include <OpenGL/gl.h>
 //#  include <OpenGL/glu.h>
-#  include <GLUT/glut.h>
+//#  include <GLUT/glut.h>
+#  include <GL/glew.h>
+#  include <GLFW/glfw3.h>
+//#  include <GL/gl3w.h>
+//#  include "GLFW/glfw3.h"
 # else
-#  include <GL/glut.h>
+//#  include <GL/glut.h>
 # endif
 
 int		ft_error(const char *str1, const char *str2, const char *str3);

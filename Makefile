@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/04/09 16:00:18 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/09 16:57:18 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
 			$(SDL2_INC) \
-			`pkg-config --cflags glfw3`
+			`pkg-config --cflags glfw3 glew`
 
 HEADER = #defines.h scop.h  parser.h struct.h event.h rendering.h
 
@@ -78,7 +78,7 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			-lm \
 			$(SDL2_LFLAGS)\
-			`pkg-config --libs glfw3`
+			`pkg-config --libs glfw3 glew`
 	
 #			-L $(GLFW_PATH)/lib/ -lGLEW
 
@@ -130,6 +130,10 @@ fclean: rm_obj
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(LIBPT_DIR) fclean
 	@make -C $(LIBMYSDL_DIR) fclean
+
+libraries:
+	brew install glew
+	brew install glfw3
 
 re: fclean all
 
