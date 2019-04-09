@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 16:28:23 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/09 19:54:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ typedef union			u_color
 
 typedef struct		s_data
 {
-	t_win			*win;
-	SDL_GLContext	gl_ptr;
+	//t_win			*win;
+	GLFWwindow		*win;
+	//SDL_GLContext	gl_ptr;
 }					t_data;
 
 #endif

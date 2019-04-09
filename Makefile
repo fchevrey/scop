@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/03/20 16:45:57 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/09 19:06:00 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,11 @@ ORANGE = [038;2;239;138;5
 ## Sources ##
 SRCS_DIR = srcs
 
-SRCS = main.c ft_error.c ft_exit.c \
+SRCS = main.c ft_error.c ft_exit.c glad.c\
 	   \
 	   event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
 	   event/ft_mouse.c 
+
 
 ## Objects ##
 OBJS = $(SRCS:.c=.o)
@@ -43,11 +44,12 @@ LIBPT_DIR = $(LIB_DIR)/libpt
 
 ## Macros for extern library installation ##
 SDL_VER = 2.0.9
-GLEW_VER = 2.1.0
+GLFW_VER = 3.2.1
 
 MAIN_DIR_PATH = $(shell pwd)
 SDL_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/sdl2)
-GLEW_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/glew-$(GLEW_VER))
+GLFW_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/glfw-$(GLFW_VER))
+GLAD_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/glad)
 
 HEADER_DIR = includes/
 
@@ -60,9 +62,10 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
 			$(SDL2_INC) \
-			-I $(GLEW_PATH)/include/GL/
+			-I $(GLAD_PATH)/ \
+			`pkg-config --cflags glfw3`
 
-HEADER = defines.h scop.h  parser.h struct.h event.h rendering.h
+HEADER = #defines.h scop.h  parser.h struct.h event.h rendering.h
 
 HEADERS = $(addprefix $(HEADER_DIR), $(HEADER))
 
@@ -78,10 +81,14 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			-lm \
 			$(SDL2_LFLAGS)\
-			-L $(GLEW_PATH)/lib/ -lGLEW
+			`pkg-config --libs glfw3`
+	
+#			-L $(GLFW_PATH)/lib/ -lGLEW
 
+FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo -lglfw
+#FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo -lglfw3
 #FRAMEWORK = #-framework Carbon -framework OpenGL -framework GLUT
-FRAMEWORK =  -framework OpenGL -framework GLUT
+#FRAMEWORK =  -framework OpenGL -framework GLUT
 #FRAMEWORK =  -framework GLUT
 #LINUX = -lGL -lGLU -lglut
 
@@ -165,7 +172,7 @@ SDL2 :
 	else \
 		echo "\033$(GREEN)m✓\tSDl2-$(SDL_VER) already installed\033[0m"; \
 	fi
-	@if [ ! -d "./lib/glew-$(GLEW_VER)" ]; then \
+#	@if [ ! -d "./lib/glew-$(GLEW_VER)" ]; then \
 		echo "\033$(PINK)m⚠\tGLEW is not installed ! ...\033[0m"; \
 		echo "\033$(CYAN)m➼\tCompiling GLEW-$(GLEW_VER) ...\033[0m"; \
 		echo "\033$(CYAN)m➼\tCompiling GLEW-$(GLEW_VER) ...\033[0m"; \
