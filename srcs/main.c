@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/09 21:19:19 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/09 21:33:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,9 @@ static int		init_library(t_data *data, int *ac, char **av)
 	glfwSetFramebufferSizeCallback(data->win, &framebuffer_size_callback);
 	return (1);
 }
-void displayMe(void)
-{
-	glBegin(GL_TRIANGLES);
-	glVertex3f(-0.5f, 0.5f, 0.0f);
-	glVertex3f(0.5f, -0.5f, 0.0f);
-	glVertex3f(0.0f, 0.5f, 0.0f);
-	glEnd();
-}
-
 void			test_vertices(t_data *data)
 {
+	int					success;
 	/*create shader*/
 	unsigned int	vertexShader;
 	char			infoLog[512];
@@ -112,13 +104,16 @@ void			test_vertices(t_data *data)
 	glDeleteShader(fragmentShader);
 	/*create vertices*/
 	unsigned int		vbo;//Vertex Buffer Object
-	float		vert[] = {-0.5f, 0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-			0.0f, 0.5f, 0.0f};
-	int					success;
+	unsigned int		VAO;//Vertex array Object
+	float		vert[] = {
+		-0.5f, -0.5f, 0.0f,//left
+		0.5f, -0.5f, 0.0f,//right
+			0.0f, 0.5f, 0.0f};//top
 
 	/*init buffer for vertices*/
+	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &vbo);
+	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vert), vert, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0); 
@@ -126,15 +121,30 @@ void			test_vertices(t_data *data)
 	//second is 3 because we pass vector
 	//Flase because we don't want normalized values
 	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 	/*Create VAO*/
-	unsigned int VAO;
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	/*glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vert);
 	glEnableVertexAttribArray(0);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glDisableVertexAttribArray(0);*/
+	while(!glfwWindowShouldClose(data->win))
+	{
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+		glUseProgram(shaderProgram);
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glfwSwapBuffers(data->win);
+		glfwPollEvents();
+	}
+	ft_putstr("d\n");
+	//test_vertices(data);
+	//main_loop(data);
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &vbo);
+	glfwTerminate();
 }
 
 int				main(int ac, char **av)
@@ -149,21 +159,8 @@ int				main(int ac, char **av)
 		return (EXIT_SUCCESS);
 	if (!init_library(data, &ac, av))
 		return (EXIT_SUCCESS);
-	glEnable(GL_DEPTH_TEST);
-	while(!glfwWindowShouldClose(data->win))
-	{
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+	///glEnable(GL_DEPTH_TEST);
 		test_vertices(data);
-		//displayMe();
-		glfwSwapBuffers(data->win);
-		glfwPollEvents();
-	}
-	ft_putstr("d\n");
-	//test_vertices(data);
-	//main_loop(data);
-	glfwTerminate();
 	//ft_exit(&data);
 	return (EXIT_SUCCESS);
 }
