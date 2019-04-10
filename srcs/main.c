@@ -6,21 +6,21 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/09 21:33:40 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 17:14:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 #include "event.h"
 /* shaders */
-const char *vertexShaderSource = "#version 330 core\n"
+const char *vertexShaderSource = "#version 410 core\n"
 "layout (location = 0) in vec3 aPos;\n"
 "void main()\n"
 "{\n"
 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 "}\0";
 
-const char *fragmentShaderSource = "#version 330 core\n"
+const char *fragmentShaderSource = "#version 410 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
@@ -139,7 +139,6 @@ void			test_vertices(t_data *data)
 		glfwSwapBuffers(data->win);
 		glfwPollEvents();
 	}
-	ft_putstr("d\n");
 	//test_vertices(data);
 	//main_loop(data);
 	glDeleteVertexArrays(1, &VAO);
@@ -160,7 +159,9 @@ int				main(int ac, char **av)
 	if (!init_library(data, &ac, av))
 		return (EXIT_SUCCESS);
 	///glEnable(GL_DEPTH_TEST);
-		test_vertices(data);
+		//test_vertices(data);
+		test_rectangle(data);
+	//	test_two_triangle(data);
 	//ft_exit(&data);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:53:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/09 19:57:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 15:53:52 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@
 
 int		ft_error(const char *str1, const char *str2, const char *str3);
 void	ft_exit(t_data **data);
+void			test_rectangle(t_data *data);
+void			test_two_triangle(t_data *data);
 
 #endif
