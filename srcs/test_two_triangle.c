@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 15:52:33 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/10 18:24:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 18:35:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ void			test_two_triangle(t_data *data)
 	orange = load_shader("shaders/orange.glsl");
 	purple = load_shader("shaders/purple.glsl");
 	std_vert = load_shader("shaders/std_vertex.glsl");
-	ft_putendl("orange = ");
-	ft_putendl(orange);
-	ft_putendl("purple");
-	ft_putendl(purple);
-	ft_putendl("std vert = ");
-	ft_putendl(std_vert);
 	vert_shader = add_shader(std_vert, &shaderprogram_orange, GL_VERTEX_SHADER);
 	frag_shader = add_shader(orange, &shaderprogram_orange, GL_FRAGMENT_SHADER);
 	frag_shader_2 = add_shader(purple, &shaderprogram_color, GL_FRAGMENT_SHADER);

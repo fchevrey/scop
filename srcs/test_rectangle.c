@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:39:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/10 18:10:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 18:37:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,23 @@ const char *fragmShaderSource = "#version 410 core\n"
 	unsigned int			shaderprogram_orange;
 	unsigned int			vert_shader;
 	unsigned int			frag_shader;
+	char					*orange;
+	char					*purple;
+	char					*std_vert;
+
 
 	shaderprogram_orange = glCreateProgram();
-	vert_shader = add_shader(verteShaderSource, &shaderprogram_orange, GL_VERTEX_SHADER);
-	frag_shader = add_shader(fragmShaderSource, &shaderprogram_orange, GL_FRAGMENT_SHADER);
+	orange = load_shader("shaders/orange.glsl");
+	purple = load_shader("shaders/purple.glsl");
+	std_vert = load_shader("shaders/std_vertex.glsl");
+	vert_shader = add_shader(std_vert, &shaderprogram_orange, GL_VERTEX_SHADER);
+	frag_shader = add_shader(orange, &shaderprogram_orange, GL_FRAGMENT_SHADER);
 	glLinkProgram(shaderprogram_orange);
 	glUseProgram(shaderprogram_orange);
 	glDeleteShader(vert_shader);
 	glDeleteShader(frag_shader);
+	ft_strdel(&orange);
+	ft_strdel(&std_vert);
 	/*create vertices*/
 	unsigned int		vbo;//Vertex Buffer Object
 	unsigned int		VAO;//Vertex array Object
