@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2018/08/22 16:50:21 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/10 18:29:38 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS_NAME = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 	ft_tabprint.c ft_putnbrnl.c ft_tabdel.c ft_strsubf.c \
 	ft_strjoinf.c get_next_line.c ft_tablen.c print_memory.c \
 	count_lines_of_file.c ft_str_is_digit.c ft_lstadd_last.c \
-	ft_lstsrch.c get_next_line_multi.c ft_lstnew_cpy.c
+	ft_lstsrch.c get_next_line_multi.c ft_lstnew_cpy.c ft_strjoin3f.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_NAME))
 

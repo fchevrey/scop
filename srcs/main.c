@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/10 17:14:24 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 18:18:50 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 #include "event.h"
-/* shaders */
+#include "init.h"
 const char *vertexShaderSource = "#version 410 core\n"
 "layout (location = 0) in vec3 aPos;\n"
 "void main()\n"
@@ -160,8 +160,8 @@ int				main(int ac, char **av)
 		return (EXIT_SUCCESS);
 	///glEnable(GL_DEPTH_TEST);
 		//test_vertices(data);
-		test_rectangle(data);
-	//	test_two_triangle(data);
+	//	test_rectangle(data);
+		test_two_triangle(data);
 	//ft_exit(&data);
 	return (EXIT_SUCCESS);
 }

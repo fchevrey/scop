@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:05:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/04/19 14:54:55 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 18:29:11 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char				*ft_strupper(char *src);
 void				ft_tabprint(char **tab);
 void				ft_tabdel(char ***tab);
 char				*ft_strjoinf(char *s1, char const *s2);
+char				*ft_strjoin3f(char *s1, char const *s2, const char *s3);
 char				*ft_strsubf(char *c, unsigned int start, size_t len);
 int					get_next_line(const int fd, char **line);
 int					get_next_line_multi(const int fd, char **line);

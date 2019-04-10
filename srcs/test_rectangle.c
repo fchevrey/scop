@@ -6,70 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:39:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/10 17:17:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/10 18:10:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
-
-
-/*const char *fragShaderSource2 = "#version 410 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(0.5f, 0.5f, 1.0f, 1.0f);\n"
-"}\n\0";*/
-
-/*void		framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}*/
-
-/*static int		init_library(t_data *data, int *ac, char **av)
-{
-	t_point		size;
-
-	size = pt_set(WIN_WIDTH, WIN_HEIGHT);
-	if (!glfwInit())
-		return  ft_error("GLWl init failed", NULL, NULL);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	//GLFWwindow		*win;
-	data->win = glfwCreateWindow(size.x, size.y, "LearnOPenGL", NULL, NULL);
-	if (!data->win)
-		return ft_error("window wont open", NULL, NULL);
-	glfwMakeContextCurrent(data->win);
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		ft_putstr("Failed to initialize GLAD\n");
-		return -1;
-	}
-	glfwSetFramebufferSizeCallback(data->win, &framebuffer_size_callback);
-	return (1);
-}*/
-
-static unsigned int			add_shader(const char *shadersource, unsigned int *shaderprogram, int define)
-{
-	int					success;
-	unsigned int		shader;
-	char				infoLog[512];
-
-	shader = glCreateShader(define);
-	glShaderSource(shader, 1, &shadersource, NULL);
-	glCompileShader(shader);
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(shader, 512, NULL, infoLog);
-		ft_putstr("Shader compilation error :");
-		ft_putendl(infoLog);
-		return 0;
-	}
-	glAttachShader(*shaderprogram, shader);
-	return shader;
-}
+#include "init.h"
 
 void			test_rectangle(t_data *data)
 {
