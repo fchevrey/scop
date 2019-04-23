@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 18:57:18 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/23 14:52:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:23:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tga.h"
 
-static void				find_endian(int *endian)
+static int				find_endian(void)
 {
 	int		s;
 	char	*c;
@@ -20,9 +20,9 @@ static void				find_endian(int *endian)
 	s = 1;
 	c = (char*)&s;
 	if (*c == 1)
-		*endian = 1;
+		return (1);
 	else
-		*endian = 0;
+		return (0);
 }
 
 static unsigned char	*ft_decode_tga_little_endian(t_header *header,
@@ -73,17 +73,16 @@ static unsigned char	*ft_decode_tga_big_endian(t_header *header,
 	return (begin);
 }
 
-unsigned char			*ft_decode_tga(int *endian, t_header *header,
+unsigned char			*ft_decode_tga(t_header *header,
 		unsigned char *image)
 {
 	unsigned char	*end;
 	unsigned char	*begin;
+	int endian = find_endian();
 
 	begin = image;
 	end = image + (header->x * header->y * 4);
-	if (*endian == -1)
-		find_endian(endian);
-	if (*endian == 0)
+	if (endian == 0)
 		begin = ft_decode_tga_little_endian(header, image);
 	else
 		begin = ft_decode_tga_big_endian(header, image);

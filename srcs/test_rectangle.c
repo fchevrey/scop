@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 13:39:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/10 18:37:07 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:24:39 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 
 void			test_rectangle(t_data *data)
 {
-const char *verteShaderSource = "#version 410 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"}\0";
-
-const char *fragmShaderSource = "#version 410 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-"}\n\0";
 	const unsigned int		nb_array = 2;
 	unsigned int			shaderprogram_orange;
 	unsigned int			vert_shader;
