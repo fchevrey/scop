@@ -2,25 +2,11 @@
 #include "init.h"
 #include "tga.h"
 
-/*static t_texture	*texture_new_no_SDL(t_point size)
-  {
-  t_texture			*tex;
-
-  if ((tex = (t_texture*)malloc(sizeof(t_texture))) == NULL)
-  return (NULL);
-  if (!(tex->tab_pxl = (uint32_t*)malloc(sizeof(uint32_t) * size.x * size.y)))
-  return (NULL);
-  tex->size.x = size.x;
-  tex->size.y = size.y;
-  tex->sdl_tex = NULL;
-  return (tex);
-  }*/
-
 int				load_gl_texture(unsigned int *text_number, char *filname)
 {
 	t_texture	*txt;
 
-	if (!(txt = ft_load_texture("textures/Brick.tga")))
+	if (!(txt = ft_load_texture("textures/smiley.tga")))
 		return (0);
 	glGenTextures(1, text_number);
 	glBindTexture(GL_TEXTURE_2D, *text_number);
@@ -61,25 +47,27 @@ void			test_texts(t_data *data)
 	/*create vertices*/
 	unsigned int		vbo;//Vertex Buffer Object
 	unsigned int		VAO;//Vertex array Object
-	/*	float		vert[] = {
-		0.5f, 0.5f, 0.0f,//top right
-		0.5f, -0.5f, 0.0f,//bottom rigth
-		-0.5f, -0.5f, 0.0f,//top
-		-0.5f, 0.5f, 0.0f};//top*/
-	/*float vert[] = {
+/*	float vert[] = { //original form tuto
 		// positions          // colors           // texture coords
 		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
 		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
 		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
 		-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
 	};*/
-	float vert[] = {
+	float vert[] = { //revert
 		// positions          // colors           // texture coords
 		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,   // top right
 		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,   // bottom right
 		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,   // bottom left
 		-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f    // top left 
 	};
+/*	float vert[] = { //revert with alpha
+		// positions          // colors           // texture coords
+		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f, 0.0f,   1.0f, 0.0f,   // top right
+		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // bottom right
+		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 1.0f,   // bottom left
+		-0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f,   0.0f, 0.0f    // top left 
+	};*/
 	unsigned int		indices[] =
 	{
 		0, 1, 3,
@@ -87,6 +75,8 @@ void			test_texts(t_data *data)
 	};
 	unsigned int		ebo;//Element Buffer Array used to stock indices
 	/*load texture*/
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // to use alpha
+	glEnable( GL_BLEND );//to use alpha
 	load_gl_texture(&text_number, "textures/Brick.tga");
 	/*init buffer for vertices*/
 	glGenVertexArrays(1, &VAO);
