@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 20:13:00 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/23 20:23:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:14:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ void			test_double_tex(t_data *data)
 	  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));*/
 	load_gl_texture(&text1_nber, "textures/Brick.tga");
 	load_gl_texture(&text2_nber, "textures/smiley.tga");
-	glUniform1i(glGetUniformLocation(frag_shader, "tex1"), 0);//donne l'index des textures au fragment shader tex1 etant le nom de  la variable dans le shader 
-	glUniform1i(glGetUniformLocation(frag_shader, "tex2"), 1);
+	glUniform1i(glGetUniformLocation(shaderprogram_orange, "tex1"), 0);//donne l'index des textures au fragment shader tex1 etant le nom de  la variable dans le shader 
+	glUniform1i(glGetUniformLocation(shaderprogram_orange, "tex2"), 1);
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
