@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/25 15:06:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 19:37:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,14 @@ t_4matrix			m4_one(void);
 t_4matrix			m4_op(const t_4matrix *m1, char operand,
 		const t_4matrix *m2);
 t_4matrix			m4_bc(const t_4matrix *m1, char operand, float nb);
+void				m4_to_float(float *array, const t_4matrix *src,
+		int is_column_major);
 t_vecfl				scale(t_vecfl src, t_vecfl factors);
 t_vecfl				translate(t_vecfl src, t_vecfl factors);
 t_vecfl				rotate_x(t_vecfl src, float angle);
 t_vecfl				rotate_y(t_vecfl src, float angle);
 t_vecfl				rotate_z(t_vecfl src, float angle);
 t_vecfl				rotate(t_vecfl src, t_vecfl factors, float angle);
+t_4matrix			perspective(float angle, float ratio,
+float near, float far);
 #endif
