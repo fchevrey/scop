@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 18:02:14 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/24 18:16:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:07:28 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vecfl			rotate_x(t_vecfl src, float angle)
 
 	rad = deg_to_rad(angle);
 	dst.x = src.x;
-	dst.y = (cosf(rad) * src.y) - (sinf(rad) * rad.z);
-	dst.z = (sinf(rad) * src.y) + (cosf(rad) * rad.z);
+	dst.y = (cosf(rad) * src.y) - (sinf(rad) * src.z);
+	dst.z = (sinf(rad) * src.y) + (cosf(rad) * src.z);
 	return (dst);
 }

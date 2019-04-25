@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:22:57 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/24 16:31:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:06:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@
 
 t_vecfl		translate(t_vecfl  src, t_vecfl factors)
 {
-	return (vec_op(src, '+', factors));
+	return (vecfl_op(src, '+', factors));
 }

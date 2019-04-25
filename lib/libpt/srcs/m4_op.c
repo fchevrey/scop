@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:23:40 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/24 16:09:02 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:05:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_4matrix		add(const t_4matrix *m1, const t_4matrix *m2)
 		y = 0;
 		while (y < 4)
 		{
-			dst.n[x][y] = m1->n[x][y] + m2->[x][y];
+			dst.n[x][y] = m1->n[x][y] + m2->n[x][y];
 			y++;
 		}
 		x++;
@@ -44,7 +44,7 @@ static t_4matrix		minus(const t_4matrix *m1, const t_4matrix *m2)
 		y = 0;
 		while (y < 4)
 		{
-			dst.n[x][y] = m1->n[x][y] - m2->[x][y];
+			dst.n[x][y] = m1->n[x][y] - m2->n[x][y];
 			y++;
 		}
 		x++;
@@ -70,7 +70,7 @@ static t_4matrix		multiply(const t_4matrix *m1, const t_4matrix *m2)
 			col = quatfl_set(m2->n[0][y], m2->n[1][y], m2->n[2][y],
 				m2->n[3][y]);
 			dst.n[x][y] = (row.x * col.x) + (row.y * col.y) + (row.z * col.z)
-				+ (row.w * co.w);
+				+ (row.w * col.w);
 			y++;
 		}
 		x++;
@@ -83,6 +83,8 @@ static t_4matrix		divide(const t_4matrix *m1, const t_4matrix *m2)
 	t_4matrix		dst;
 	int				x;
 	int				y;
+	t_quatfl		row;
+	t_quatfl		col;
 
 	x = 0;
 	while (x < 4)
@@ -94,7 +96,7 @@ static t_4matrix		divide(const t_4matrix *m1, const t_4matrix *m2)
 			col = quatfl_set(m2->n[0][y], m2->n[1][y], m2->n[2][y],
 				m2->n[3][y]);
 			dst.n[x][y] = (row.x / col.x) + (row.y / col.y) + (row.z / col.z)
-				+ (row.w / co.w);
+				+ (row.w / col.w);
 			y++;
 		}
 		x++;

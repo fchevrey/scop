@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/24 18:07:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:06:29 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ t_vec				vec_bc(t_vec crd, char operand, int nb);
 t_vec				vec_set(int x, int y, int z);
 t_vec				vec_op(t_vec crd1, char operand, t_vec crd2);
 void				vecfl_swap(t_vecfl *pt1, t_vecfl *pt2);
-t_vec				vecfl_bc(t_vecfl crd, char operand, float nb);
-t_vec				vecfl_set(float x, float y, float z);
-t_vec				vecfl_op(t_vecfl crd1, char operand, t_vecfl crd2);
+t_vecfl				vecfl_bc(t_vecfl crd, char operand, float nb);
+t_vecfl				vecfl_set(float x, float y, float z);
+t_vecfl				vecfl_op(t_vecfl crd1, char operand, t_vecfl crd2);
 
 float				deg_to_rad(float deg);
 float				rad_to_deg(float rad);
@@ -101,5 +101,5 @@ t_vecfl				translate(t_vecfl src, t_vecfl factors);
 t_vecfl				rotate_x(t_vecfl src, float angle);
 t_vecfl				rotate_y(t_vecfl src, float angle);
 t_vecfl				rotate_z(t_vecfl src, float angle);
-t_vecfl				rotate(t_vecfl src, t_vecfl factors);
+t_vecfl				rotate(t_vecfl src, t_vecfl factors, float angle);
 #endif

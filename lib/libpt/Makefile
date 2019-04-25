@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
-#    Updated: 2018/08/22 16:58:54 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/25 15:02:02 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,21 @@ SRCS_NAME = ft_putcrd.c\
 			vec_bc.c\
 			vec_op.c\
 			vec_set.c\
-			vec_swap.c
+			vec_swap.c\
+			deg_rad.c\
+			quatfl_set.c\
+			quatfl_from_vec.c\
+			m4_identity.c\
+			m4_zero.c\
+			m4_one.c\
+			m4_op.c\
+			m4_bc.c\
+			scale.c\
+			translate.c\
+			rotate_x.c\
+			rotate_y.c\
+			rotate_z.c\
+			rotate.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_NAME))
 
