@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/23 20:10:46 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:52:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int				main(int ac, char **av)
 	///glEnable(GL_DEPTH_TEST);
 		//test_vertices(data);
 	//	test_rectangle(data);
-		test_double_tex(data);
+		//test_double_tex(data);
+		test_3d(data);
 //		test_two_triangle(data);
 	//ft_exit(&data);
 	return (EXIT_SUCCESS);

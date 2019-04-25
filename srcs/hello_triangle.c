@@ -1,7 +1,7 @@
 #include "scop.h"
 #include "init.h"
 
-void			test_texts(t_data *data)
+void			hello_triangle(t_data *data)
 {
 	const unsigned int		nb_array = 2;
 	unsigned int			shaderprogram_orange;

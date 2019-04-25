@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:53:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/23 20:13:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/25 20:00:22 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void			test_two_triangle(t_data *data);
 void			test_texts(t_data *data);
 void			test_double_tex(t_data *data);
 void			malloc_failed(char *str);
+void			test_3d(t_data *data);
+void			m4_print(t_4matrix m);
 
 #endif
