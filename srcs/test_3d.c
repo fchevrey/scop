@@ -15,8 +15,10 @@ static int				load_gl_texture(unsigned int *text_number, char *filename)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txt->size.x, txt->size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt->tab_pxl);
-	//	glTexImage2D(GL_TEXTURE_2D, 0, GL_BGRA, txt->size.x, txt->size.y, 0, GL_BGRA, GL_UNSIGNED_BYTE, txt->tab_pxl);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txt->size.x, txt->size.y, 0,
+			GL_RGBA, GL_UNSIGNED_BYTE, txt->tab_pxl);
+	//	glTexImage2D(GL_TEXTURE_2D, 0, GL_BGRA, txt->size.x, txt->size.y,
+	//	0, GL_BGRA, GL_UNSIGNED_BYTE, txt->tab_pxl);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	free_tex(&txt);
 	return (1);
@@ -140,15 +142,19 @@ void			test_3d(t_data *data)
 	view_ptr = (float*)malloc(sizeof(float) * 16);
 	model_ptr = (float*)malloc(sizeof(float) * 16);
 	proj_ptr = (float*)malloc(sizeof(float) * 16);
-	//model = m4_identity();
-	//view = m4_identity();
-	model = m4_one();
-	view = m4_one();
-	projection = perspective(45.0f, (float)WIN_WIDTH/(float)WIN_HEIGHT, 0.1f, 100.0f);
+	model = m4_identity();
+//	view = m4_identity();
+	view = m4_translate(vecfl_set(1.0f, 1.0f, -3.0f));
+	//model = m4_one();
+	//view = m4_one();
+	projection = perspective(45.0f, (float)WIN_WIDTH/(float)WIN_HEIGHT, 0.1f,
+			100.0f);
 	m4_to_float(proj_ptr, &projection, 1);
 	m4_print(projection);
 	print_float_arr(proj_ptr, 16);
-	glUniformMatrix4fv(glGetUniformLocation(shaderprogram_orange, "projection"), 1, GL_FALSE, proj_ptr);
+	glUniformMatrix4fv(glGetUniformLocation(shaderprogram_orange, "projection"),
+			1, GL_FALSE, proj_ptr);
+
 	while(!glfwWindowShouldClose(data->win))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
