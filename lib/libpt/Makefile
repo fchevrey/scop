@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
-#    Updated: 2019/04/26 13:26:49 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/26 15:41:13 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ SRCS_NAME = ft_putcrd.c\
 			perspective.c\
 			m4_scale.c\
 			m4_translate.c\
+			m4_rotation.c\
 			m4_to_float.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_NAME))
