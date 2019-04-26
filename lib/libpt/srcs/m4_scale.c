@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vecfl_swap.c                                       :+:      :+:    :+:   */
+/*   m4_scale.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 15:15:37 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/26 13:32:09 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/04/26 13:20:15 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/04/26 13:21:38 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpt.h"
 
-void		vec_swap(t_vec *pt1, t_vec *pt2)
+t_4matrix	m4_scale(t_vecfl factors)
 {
-	t_vecfl		swap;
+	t_4matrix		m;
 
-	if (!pt1 || !pt2)
-		return ;
-	swap.x = pt1->x;
-	swap.y = pt1->y;
-	swap.z = pt1->z;
-	pt1->x = pt2->x;
-	pt1->y = pt2->y;
-	pt1->z = pt2->z;
-	pt2->x = swap.x;
-	pt2->y = swap.y;
-	pt2->z = swap.z;
+	m = m4_identity();
+	m.n[0][0] = factors.x;
+	m.n[1][1] = factors.y;
+	m.n[2][2] = factors.z;
+	return (m);
 }

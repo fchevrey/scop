@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 12:07:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/08/09 12:07:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/26 13:30:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpt.h"
 
-t_vec	vecfl_set(float x, float y, float z)
+t_vecfl	vecfl_set(float x, float y, float z)
 {
 	t_vecfl		crd;
 

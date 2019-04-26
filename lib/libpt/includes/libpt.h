@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/25 19:37:49 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/26 13:29:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,12 @@ void				ptfl_swap(t_ptfl *pt1, t_ptfl *pt2);
 t_ptdb				ptdb_op(t_ptdb crd1, char operand, t_ptdb crd2);
 t_ptdb				ptdb_bc(t_ptdb crd, char operand, double nb);
 t_ptdb				ptdb_set(double x, double y);
+t_vec				vec_set(int x, int y, int z);
 void				vec_swap(t_vec *pt1, t_vec *pt2);
 t_vec				vec_bc(t_vec crd, char operand, int nb);
 t_vec				vec_set(int x, int y, int z);
 t_vec				vec_op(t_vec crd1, char operand, t_vec crd2);
+t_vecfl				vecfl_set(float x, float y, float z);
 void				vecfl_swap(t_vecfl *pt1, t_vecfl *pt2);
 t_vecfl				vecfl_bc(t_vecfl crd, char operand, float nb);
 t_vecfl				vecfl_set(float x, float y, float z);
@@ -99,6 +101,8 @@ t_4matrix			m4_bc(const t_4matrix *m1, char operand, float nb);
 void				m4_to_float(float *array, const t_4matrix *src,
 		int is_column_major);
 t_vecfl				scale(t_vecfl src, t_vecfl factors);
+t_4matrix			m4_scale(t_vecfl factors);
+t_4matrix			m4_translate(t_vecfl factors);
 t_vecfl				translate(t_vecfl src, t_vecfl factors);
 t_vecfl				rotate_x(t_vecfl src, float angle);
 t_vecfl				rotate_y(t_vecfl src, float angle);
