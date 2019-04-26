@@ -143,15 +143,16 @@ void			test_3d(t_data *data)
 	model_ptr = (float*)malloc(sizeof(float) * 16);
 	proj_ptr = (float*)malloc(sizeof(float) * 16);
 	model = m4_identity();
-//	view = m4_identity();
-	view = m4_translate(vecfl_set(1.0f, 1.0f, -3.0f));
+	view = m4_identity();
+	view = m4_translate(vecfl_set(0.9f, 0.6f, -2.0f));
 	//model = m4_one();
 	//view = m4_one();
-	projection = perspective(45.0f, (float)WIN_WIDTH/(float)WIN_HEIGHT, 0.1f,
+	projection = perspective(75.0f, (float)WIN_WIDTH/(float)WIN_HEIGHT, 0.1f,
 			100.0f);
 	m4_to_float(proj_ptr, &projection, 1);
-	m4_print(projection);
-	print_float_arr(proj_ptr, 16);
+	m4_print(view);
+	m4_to_float(view_ptr, &view, 1);
+	print_float_arr(view_ptr, 16);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram_orange, "projection"),
 			1, GL_FALSE, proj_ptr);
 
