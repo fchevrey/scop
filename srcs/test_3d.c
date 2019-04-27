@@ -165,6 +165,7 @@ void			test_3d(t_data *data)
 		glUseProgram(shaderprogram_orange);
 		glBindVertexArray(VAO);
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		//model = m4_rotation(vecfl_set(0.5f, 1.0f, 0.0f), 50.0f * (float)glfwGetTime() );
 		model = m4_rotation(vecfl_set(0.0f, 0.0f, 0.0f), 50.0f * (float)glfwGetTime() );
 		m4_to_float(view_ptr, &view, 1);
 		m4_to_float(model_ptr, &model, 1);
