@@ -55,8 +55,8 @@ t_mat4        mat4_proj(void)
 	t = tan(deg_to_rad(FOV) / 2) * N_PLANE;
 	r = t * (WIN_WIDTH / WIN_HEIGHT);
 	ret = mat4_set(0.0f, 0);
-	ret.m[0] = N_PLANE / r;
-	ret.m[5] = N_PLANE / t;
+	ret.m[0] = 1 / r;
+	ret.m[5] = 1 / t;
 	ret.m[10] = -(F_PLANE + N_PLANE) / (F_PLANE - N_PLANE);
 	ret.m[14] = -(2 * F_PLANE * N_PLANE) / (F_PLANE - N_PLANE);
 	ret.m[11] = -1;
@@ -102,17 +102,6 @@ t_mat4        mat4_rot(t_mat4 a, const float angle, const t_vecfl axis)
 	coef[2] = 1 - coef[0];
 	ret = mat4_set(1.0f, 1);
 	calc_rot(&ret, axis, coef);
-	ret = mat4_mul(ret, a);
-	return (ret);
-}
-t_mat4        mat4_trans(t_mat4 a, const t_vecfl b)
-{
-	t_mat4    ret;
-
-	ret = mat4_set(1.0f, 1);
-	ret.m[3] = b.x;
-	ret.m[7] = b.y;
-	ret.m[11] = b.z;
 	ret = mat4_mul(ret, a);
 	return (ret);
 }
@@ -225,13 +214,9 @@ void			test_3d(t_data *data)
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-	t_mat4		model;
-	t_mat4		view;
-	t_mat4		projection;
-	t_4matrix		myModel;
-	t_4matrix		myModel_tmp;
-	t_4matrix		myView;
-	t_4matrix		myProjection;
+	t_4matrix		model;
+	t_4matrix		view;
+	t_4matrix		projection;
 	float			*view_ptr;
 	float			*model_ptr;
 	float			*proj_ptr;
@@ -239,35 +224,24 @@ void			test_3d(t_data *data)
 	view_ptr = (float*)malloc(sizeof(float) * 16);
 	model_ptr = (float*)malloc(sizeof(float) * 16);
 	proj_ptr = (float*)malloc(sizeof(float) * 16);
-	myModel = m4_identity();
-	myModel = m4_rotation(vecfl_set(1.0, 1.0, 1.0), 50.0f * (float)glfwGetTime());
-	myView = m4_identity();
-	myView = m4_translate(vecfl_set(0.0f, 0.0f, -3.0f));
-	model = mat4_set(1.0f, 1);
-	view = mat4_set(1.0f, 1);
-	view = mat4_trans(view, vecfl_set(0.0f, 0.0f, -3.0f));
-	model = mat4_rot(model, deg_to_rad( 50.0f *(float)glfwGetTime()), vecfl_set(1.0f, 1.0f, 1.0f));
-	projection = mat4_proj();
-	printf("projection\n");
-	print_float_arr(projection.m, 16);
-	printf("view\n");
-	print_float_arr(view.m, 16);
-	printf("model\n");
-	print_float_arr(model.m, 16);
-	myProjection = perspective(90.0f, ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f,
-	100.0f);
-	printf("MY projection\n");
-	m4_to_float(proj_ptr, &myProjection, 1);
-	print_float_arr(proj_ptr, 16);
-	printf("MY view\n");
-	m4_to_float(view_ptr, &myView, 0);
-	print_float_arr(view_ptr, 16);
-	printf("MY model\n");
-	m4_to_float(model_ptr, &myModel, 0);
-	print_float_arr(model_ptr, 16);
+	model = m4_identity();
+	//	model = m4_rotation(vecfl_set(0.5f, 1.0f, 0.0f), 270.0f);
+	view = m4_identity();
+	view = m4_translate(vecfl_set(0.0f, 0.0f, -3.0f));
+	//model = m4_one();
+	//view = m4_one();
+	projection = perspective(90.0f, ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f,
+			100.0f);
+	m4_to_float(proj_ptr, &projection, 1);
+	m4_print(view);
+	m4_to_float(view_ptr, &view, 1);
 	//	print_float_arr(view_ptr, 16);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram_orange, "projection"),
-			1, GL_FALSE, projection.m);
+			1, GL_FALSE, proj_ptr);
+	m4_to_float(view_ptr, &view, 1);
+	m4_to_float(model_ptr, &model, 1);
+	printf("projection : \n");
+	print_float_arr(proj_ptr, 16);
 	while(!glfwWindowShouldClose(data->win))
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -276,19 +250,14 @@ void			test_3d(t_data *data)
 		glUseProgram(shaderprogram_orange);
 		glBindVertexArray(VAO);
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
-
-		//model = mat4_rot(model, deg_to_rad( 0.5f , vecfl_set(1.0f, 1.0f, 1.0f));
-		myModel_tmp = m4_rotation(vecfl_set(0.0, 1.0, 0.0), 1.5f);
-		myModel = m4_op(&myModel_tmp, '*', &myModel);
-		m4_to_float(model_ptr, &myModel, 0);
+		model = m4_rotation(vecfl_set(0.0f, 1.0f, 1.0f), 50.0f * (float)glfwGetTime() );
 		//model = m4_rotation(vecfl_set(0.0f, 0.0f, 0.0f), 50.0f * (float)glfwGetTime() );
-		//m4_to_float(view_ptr, &view, 1);
-		//m4_to_float(model_ptr, &model, 1);
+		m4_to_float(view_ptr, &view, 1);
+		m4_to_float(model_ptr, &model, 1);
 		unsigned int modelLoc = glGetUniformLocation(shaderprogram_orange, "model");
 		unsigned int viewLoc  = glGetUniformLocation(shaderprogram_orange, "view");
 		glUniformMatrix4fv(modelLoc, 1, GL_TRUE, model_ptr);
-		//glUniformMatrix4fv(modelLoc, 1, GL_TRUE, model.m);
-		glUniformMatrix4fv(viewLoc, 1, GL_TRUE, view.m);
+		glUniformMatrix4fv(viewLoc, 1, GL_TRUE, view_ptr);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		glfwSwapBuffers(data->win);
 		glfwPollEvents();

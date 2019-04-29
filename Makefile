@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/04/25 20:03:31 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/29 15:38:03 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ ORANGE = [038;2;239;138;5
 ## Sources ##
 SRCS_DIR = srcs
 
-SRCS = main.c ft_error.c ft_exit.c glad.c test_rectangle.c test_two_triangle.c test_texts.c malloc_failed.c test_double_tex.c test_3d.c m4_print.c\
-	   \
+SRCS = main.c ft_error.c ft_exit.c glad.c test_rectangle.c test_two_triangle.c test_texts.c malloc_failed.c test_double_tex.c  m4_print.c\
+	   test_3d.c\
 	   event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
 	   event/ft_mouse.c \
 		\

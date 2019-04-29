@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:39:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/26 17:18:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 13:04:55 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,30 @@ float near, float far)
 	tan_half = tanf(angle / 2);
 	//t = tan_half * near;
 //	r = t * ratio * near;
-	r = ratio * tan_half * near;
 	//l = -t * ratio;
-	l = -r;
 	t = tan_half * near;
+	r = ratio * t;
+	//r = ratio * tan_half * near;
+	l = -r;
 	b = -t;
 	ft_putendl("pouet");
-	/*m0 column major*/  //work but weird
-	dst.n[0][0] = (2 * near) / (r - l);
+	/*m0 column major */ //work but weird
+	/*dst.n[0][0] = (2 * near) / (r - l);
 	dst.n[1][1] = (2 * near) / (t - b);
 	dst.n[2][2] = -(far + near) / (far - near);
 	dst.n[3][2] = -1;
 	dst.n[2][3] = -(2 * far * near) / (far - near);
 	dst.n[0][2] = (r + l) / (r - l);
-	dst.n[1][2] = (t + b) / (t - b);
+	dst.n[1][2] = (t + b) / (t - b);*/
+	
+	
+	dst.n[0][0] = (2 * near) / (r - l);
+	dst.n[1][1] = (2 * near) / (t - b);
+	dst.n[2][2] = -(far + near) / (far - near);
+	dst.n[3][2] = -1;
+	dst.n[2][3] = -(2 * far * near) / (far - near);
+	dst.n[0][2] = 0;
+	dst.n[1][2] = 0;
 	
 	/*m0 row major //don't work
 	dst.n[0][0] = (2 * near) / (r - l);
@@ -53,6 +63,7 @@ float near, float far)
 	dst.n[3][2] = -(2 * far * near) / (far - near);
 	dst.n[2][0] = (r + l) / (r - l);
 	dst.n[2][1] = (t + b) / (t - b);
+	
 	*/
 	/*m1 //work but weird
 	dst.n[0][0] = 1 / (ratio * tan_half);
