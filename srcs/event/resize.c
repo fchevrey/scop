@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   resize.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 15:10:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/29 18:45:38 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/04/29 18:25:36 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/04/29 18:30:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "scop.h"
+#include "event.h"
 
-void		ft_exit(t_data **data)
+void		resize(t_data *data, int width, int height)
 {
-	ft_putendl("quitting...");
-	if (!data || !*data)
-		exit(EXIT_SUCCESS);
-	glDeleteVertexArrays(1, &data->vao);
-	glDeleteBuffers(1, &(*data)->vbo);
-	glDeleteBuffers(1, &(*data)->ebo);
-	SDL_GL_DeleteContext((*data)->gl_ptr);
-	free_win(&(*data)->win);
-	SDL_Quit();
-	free(*data);
-	*data = NULL;
-	exit(EXIT_SUCCESS);
+	data->win->size = pt_set(width, height);
+	glViewport(0, 0, width, height);
 }

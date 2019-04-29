@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/25 17:52:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 18:33:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,39 @@
 #include "event.h"
 #include "init.h"
 
-void		framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}
-
 static int		init_library(t_data *data, int *ac, char **av)
 {
 	t_point		size;
 
 	size = pt_set(WIN_WIDTH, WIN_HEIGHT);
-	if (!glfwInit())
-		return  ft_error("GLWl init failed", NULL, NULL);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	//GLFWwindow		*win;
-	data->win = glfwCreateWindow(size.x, size.y, "LearnOPenGL", NULL, NULL);
-	if (!data->win)
-		return ft_error("window wont open", NULL, NULL);
-	glfwMakeContextCurrent(data->win);
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		ft_putstr("Failed to initialize GLAD\n");
+		ft_putstr("Erreur lors de l'initialisation de la SDL : ");
+		ft_putendl(SDL_GetError());
+		SDL_Quit();
 		return -1;
 	}
-	glfwSetFramebufferSizeCallback(data->win, &framebuffer_size_callback);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	// Création de la fenêtre
+	data->win = wingl_new(size, "testgl");
+	data->gl_ptr = SDL_GL_CreateContext(data->win->ptr);
+	if (data->gl_ptr == 0)
+	{
+		ft_putendl(SDL_GetError());
+		SDL_Quit();
+		return 0;
+	}
+	SDL_GL_MakeCurrent(data->win->ptr, data->gl_ptr);
+	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
+	{
+		ft_putstr("Failed to initialize GLAD\n");
+		return 0;
+	}
 	return (1);
 }
 
@@ -57,11 +63,11 @@ int				main(int ac, char **av)
 	if (!init_library(data, &ac, av))
 		return (EXIT_SUCCESS);
 	///glEnable(GL_DEPTH_TEST);
-		//test_vertices(data);
+	//test_vertices(data);
 	//	test_rectangle(data);
-		//test_double_tex(data);
-		test_3d(data);
-//		test_two_triangle(data);
+	//test_double_tex(data);
+	test_3d(data);
+	//		test_two_triangle(data);
 	//ft_exit(&data);
 	return (EXIT_SUCCESS);
 }

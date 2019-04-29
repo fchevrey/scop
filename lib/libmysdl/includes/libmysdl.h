@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:29:02 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/12 18:19:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:20:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void				put_tex_to_ren(t_texture *tex, SDL_Renderer *ren,
 uint32_t			get_pixel(t_point pt, t_texture *tex);
 void				write_tex_in_tex(t_texture *to_write_in, t_texture *tex,
 		t_point begin);
+t_win				*wingl_new(t_point size, char *title);
 
 #endif

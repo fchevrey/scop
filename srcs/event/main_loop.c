@@ -6,11 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:27:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:27:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 18:57:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event.h"
+#include "rendering.h"
 
 static int		ft_event(SDL_Event *event, t_data *data)
 {
@@ -32,6 +33,9 @@ static int		ft_event(SDL_Event *event, t_data *data)
 			event->key.keysym.sym = SDLK_ESCAPE;
 			ft_keyboard(event->key.keysym.sym, event->key.repeat, event, data);
 		}
+		else if (event->type == SDL_WINDOWEVENT
+				&& event->window.event == SDL_WINDOWEVENT_RESIZED)
+			resize(data, event->window.data1, event->window.data2);
 	}
 	return (0);
 }
@@ -54,7 +58,7 @@ void			main_loop(t_data *data)
 		if (delta >= fixdelta)
 		{
 			delta = 0.0;
-			//rendering(data);
+			render(data);
 		}
 		last_time = SDL_GetTicks();
 	}

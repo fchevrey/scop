@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:53:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/25 20:00:22 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 17:26:02 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //#  include <GLUT/glut.h>
 //#  include <GL/glew.h>
 #  include "glad.h"
-#  include <GLFW/glfw3.h>
+//#  include <GLFW/glfw3.h>
 //#  include <GL/gl3w.h>
 //#  include "GLFW/glfw3.h"
 # else

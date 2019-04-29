@@ -6,7 +6,7 @@
 #    By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 17:05:18 by fchevrey          #+#    #+#              #
-#    Updated: 2019/03/12 17:33:40 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/29 17:25:21 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_NAME = add_new_tex.c \
 			texture_new.c \
 			trace_line_tex.c \
 			get_pixel.c \
+			wingl_new.c\
 			win_new.c
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_NAME))

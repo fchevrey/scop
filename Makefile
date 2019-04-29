@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/04/29 15:38:03 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/29 18:27:36 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,15 @@ ORANGE = [038;2;239;138;5
 ## Sources ##
 SRCS_DIR = srcs
 
-SRCS = main.c ft_error.c ft_exit.c glad.c test_rectangle.c test_two_triangle.c test_texts.c malloc_failed.c test_double_tex.c  m4_print.c\
+SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
 	   test_3d.c\
 	   event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
-	   event/ft_mouse.c \
+	   event/ft_mouse.c event/resize.c\
 		\
 		init/add_shader.c init/load_shader.c\
 		\
 		tga/parse_tga.c tga/decode_tga.c
+		#test_rectangle.c test_two_triangle.c test_texts.c test_double_tex.c  \
 
 
 ## Objects ##
@@ -66,8 +67,7 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			-I $(LIBMYSDL_DIR)/includes/ \
 			-I $(LIBPT_DIR)/includes/ \
 			$(SDL2_INC) \
-			-I $(GLAD_PATH)/ \
-			`pkg-config --cflags glfw3`
+			-I $(GLAD_PATH)/ 
 
 HEADER = #defines.h scop.h  parser.h struct.h event.h rendering.h
 
@@ -84,16 +84,12 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			-lm \
-			$(SDL2_LFLAGS)\
-			`pkg-config --libs glfw3`
+			$(SDL2_LFLAGS)
 	
 #			-L $(GLFW_PATH)/lib/ -lGLEW
 
-FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo -lglfw
-#FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo -lglfw3
-#FRAMEWORK = #-framework Carbon -framework OpenGL -framework GLUT
-#FRAMEWORK =  -framework OpenGL -framework GLUT
-#FRAMEWORK =  -framework GLUT
+FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo
+#FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo -lglfw
 #LINUX = -lGL -lGLU -lglut
 
 CFLAGS = #-Wall -Wextra -Werror
@@ -176,28 +172,6 @@ SDL2 :
 	else \
 		echo "\033$(GREEN)m✓\tSDl2-$(SDL_VER) already installed\033[0m"; \
 	fi
-#	@if [ ! -d "./lib/glew-$(GLEW_VER)" ]; then \
-		echo "\033$(PINK)m⚠\tGLEW is not installed ! ...\033[0m"; \
-		echo "\033$(CYAN)m➼\tCompiling GLEW-$(GLEW_VER) ...\033[0m"; \
-		echo "\033$(CYAN)m➼\tCompiling GLEW-$(GLEW_VER) ...\033[0m"; \
-		printf "\r\033$(YELLOW)m\tIn 3 ...\033[0m"; sleep 1; \
-		printf "\r\033$(YELLOW)m\tIn 2 ...\033[0m"; sleep 1; \
-		printf "\r\033$(YELLOW)3m\tIn 1 ...\033[0m"; sleep 1; printf "\n"; \
-		echo "\033$(CYAN)m $(GLEW_PATH)\033[0m"; \
-		curl -OL https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download && \
-		tar -zxvf download && \
-		mkdir -p $(GLEW_PATH) &&\
-		cd  glew-$(GLEW_VER) && \
-		export GLEW_DEST=$(GLEW_PATH)/ && \
-			make && \
-		cd .. && \
-		echo "\033$(GREEN)m✓\tglew-$(GLEW_VER) installed !\033[0m"; \
-	else \
-		echo "\033$(GREEN)m✓\tglew-$(GLEW_VER) already installed\033[0m"; \
-	fi
-		#mv glew-$(GLEW_VER) lib/ &&\
-		#rm download;\
-		#echo "\033$(CYAN)m $(GLEW_PATH)\033[0m"; \
 
 LIBFT:
 	@echo "\033[033m➼\t\033[033mCompiling Libft ...\033[0m"

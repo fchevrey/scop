@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 18:57:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/23 18:44:14 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 18:33:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,27 +133,3 @@ t_texture				*ft_load_texture(char *filename)
 	close(fd);
 	return (text);
 }
-/*int						ft_load_texture(int *endian, char *str, t_texture *img)
-{
-	int					fd;
-	unsigned char		*image;
-	t_header			header;
-
-	if ((fd = open(str, O_RDONLY)) == -1)
-		return (-1);
-	if (ft_fill_header(&header, fd) < 0)
-	{
-		close(fd);
-		return (-1);
-	}
-	if (header.id_length != 0 && header.color_map_type != 0
-			&& header.image_type != 2)
-		return (-1);
-	fill_real_size(&header);
-	image = ft_init_image(fd, &header);
-	image = ft_decode_tga(endian, &header, image);
-	ft_fill_image(img, image, &header);
-	free(image);
-	close(fd);
-	return (0);
-}*/

@@ -65,7 +65,6 @@ void			test_3d(t_data *data)
 	unsigned int		vbo;//Vertex Buffer Object
 	unsigned int		VAO;//Vertex array Object
 	float vert[] = {
-		//position				txt coord
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 		0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
 		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -142,7 +141,7 @@ void			test_3d(t_data *data)
 	model_ptr = (float*)malloc(sizeof(float) * 16);
 	proj_ptr = (float*)malloc(sizeof(float) * 16);
 	model = m4_identity();
-	model = m4_rotation(vecfl_set(0.0, 0.0, 0.0), 50.0f * (float)glfwGetTime());
+	model = m4_rotation(vecfl_set(0.0, 0.0, 0.0), 50.0f * (float)SDL_GetTicks());
 	view = m4_identity();
 	view = m4_translate(vecfl_set(0.0f, 0.0f, -2.0f));
 	projection = perspective(90.0f, ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f,
@@ -151,7 +150,9 @@ void			test_3d(t_data *data)
 	m4_to_float(view_ptr, &view, 1);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram_orange, "projection"),
 			1, GL_FALSE, proj_ptr);
-	while(!glfwWindowShouldClose(data->win))
+	SDL_Event			event;
+	int quit = 0;
+	while (!quit)
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
@@ -166,10 +167,12 @@ void			test_3d(t_data *data)
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model_ptr);
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view_ptr);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-		glfwSwapBuffers(data->win);
-		glfwPollEvents();
+		SDL_GL_SwapWindow(data->win->ptr);
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+				quit = 1;
+		}
 	}
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &vbo);
-	glfwTerminate();
+	ft_exit(&data);
 }
