@@ -6,11 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:29:13 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:29:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/29 19:08:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERING_H
 # define RENDERING_H
+# include "scop.h"
+
+void		render(t_data* data);
 
 #endif

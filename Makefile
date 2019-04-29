@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/04/29 18:27:36 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/29 19:06:19 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
 		\
 		init/add_shader.c init/load_shader.c\
 		\
-		tga/parse_tga.c tga/decode_tga.c
+		tga/parse_tga.c tga/decode_tga.c\
+		\
+		rendering/render.c
 		#test_rectangle.c test_two_triangle.c test_texts.c test_double_tex.c  \
 
 

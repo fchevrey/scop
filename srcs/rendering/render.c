@@ -12,7 +12,7 @@ void		render(t_data* data)
 	glUseProgram(data->shader_prog);
 	glBindVertexArray(data->vao);
 	model_tmp = m4_rotation(vecfl_set(1.0, 0.0, 0.5), 1.5f);
-	model = m4_op(&model_tmp, '*', &data->model);
+	data->model = m4_op(&model_tmp, '*', &data->model);
 	m4_to_float(model_arr, &data->model, 1);
 	m4_to_float(view_arr, &data->view, 1);
 	unsigned int modelLoc = glGetUniformLocation(data->shader_prog, "model");
