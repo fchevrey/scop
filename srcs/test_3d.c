@@ -141,7 +141,7 @@ void			test_3d(t_data *data)
 	view_ptr = (float*)malloc(sizeof(float) * 16);
 	model_ptr = (float*)malloc(sizeof(float) * 16);
 	proj_ptr = (float*)malloc(sizeof(float) * 16);
-	axe = vecfl_set(1.0f, 1.0f, 0.5f);
+	axe = vecfl_set(0.5f, 0.0f, 0.0f);
 	vecfl_normalize(&axe);
 	model = m4_identity();
 	model = m4_rotation(axe, 50.0f * (float)SDL_GetTicks());
