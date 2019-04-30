@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
-#    Updated: 2019/04/26 15:41:13 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/04/30 15:37:57 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ SRCS_NAME = ft_putcrd.c\
 			vecfl_bc.c\
 			vecfl_op.c\
 			vecfl_set.c\
+			vecfl_swap.c\
+			vecfl_get_norme.c\
+			vecfl_normalize.c\
 			vecfl_swap.c\
 			deg_rad.c\
 			quatfl_set.c\

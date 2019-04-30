@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/26 16:48:09 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/04/30 15:40:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void				vecfl_swap(t_vecfl *pt1, t_vecfl *pt2);
 t_vecfl				vecfl_bc(t_vecfl crd, char operand, float nb);
 t_vecfl				vecfl_set(float x, float y, float z);
 t_vecfl				vecfl_op(t_vecfl crd1, char operand, t_vecfl crd2);
+float				vecfl_get_norme(t_vecfl src);
+void				vecfl_normalize(t_vecfl *src);
 
 float				deg_to_rad(float deg);
 float				rad_to_deg(float rad);

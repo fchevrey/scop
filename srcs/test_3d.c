@@ -136,12 +136,15 @@ void			test_3d(t_data *data)
 	float			*view_ptr;
 	float			*model_ptr;
 	float			*proj_ptr;
+	t_vecfl			axe;
 
 	view_ptr = (float*)malloc(sizeof(float) * 16);
 	model_ptr = (float*)malloc(sizeof(float) * 16);
 	proj_ptr = (float*)malloc(sizeof(float) * 16);
+	axe = vecfl_set(1.0f, 1.0f, 0.5f);
+	vecfl_normalize(&axe);
 	model = m4_identity();
-	model = m4_rotation(vecfl_set(0.0, 0.0, 0.0), 50.0f * (float)SDL_GetTicks());
+	model = m4_rotation(axe, 50.0f * (float)SDL_GetTicks());
 	view = m4_identity();
 	view = m4_translate(vecfl_set(0.0f, 0.0f, -2.0f));
 	projection = perspective(90.0f, ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f,
@@ -159,8 +162,9 @@ void			test_3d(t_data *data)
 		glBindTexture(GL_TEXTURE_2D, text_number);
 		glUseProgram(shaderprogram_orange);
 		glBindVertexArray(VAO);
-		model_tmp = m4_rotation(vecfl_set(1.0, 0.0, 0.5), 1.5f);
-		model = m4_op(&model_tmp, '*', &model);
+		//model_tmp = m4_rotation(axe, 1.5f);
+		//model = m4_op(&model_tmp, '*', &model);
+		model = m4_rotation(axe, 0.2f * (float)SDL_GetTicks());
 		m4_to_float(model_ptr, &model, 1);
 		unsigned int modelLoc = glGetUniformLocation(shaderprogram_orange, "model");
 		unsigned int viewLoc  = glGetUniformLocation(shaderprogram_orange, "view");
