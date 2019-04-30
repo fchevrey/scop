@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parse_obj_vertex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/30 15:42:47 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/04/30 14:56:30 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/04/30 15:42:45 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
-# include "scop.h"
-int		parse_obj_face(float *faces, t_data *data);
-int		parse_obj_normal(float *normal, t_data *data);
-int		parse_obj_texture(float *texture, t_data *data);
-int		parse_obj_vertex(float *vertex, t_data *data);
+#include "parse.h"
 
-struct		s_parse
+int		parse_obj_vertex(char *vertex, t_data *data)
 {
-	int		is_texture;
-	int		is_normal;
-}			t_parse
-
-#endif
+	return (1);
+}
