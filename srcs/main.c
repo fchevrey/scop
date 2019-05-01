@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/29 18:33:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:06:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,17 @@ int				main(int ac, char **av)
 	//	if (!av || !av[1] || !parse(av[1]))
 	//		ft_error("error while reading file", NULL, NULL);
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
-		return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
 	if (!init_library(data, &ac, av))
-		return (EXIT_SUCCESS);
+		return (EXIT_FAILURE);
+	if (!init_data(data))
+		return (EXIT_FAILURE);
+	main_loop(data);
 	///glEnable(GL_DEPTH_TEST);
 	//test_vertices(data);
 	//	test_rectangle(data);
 	//test_double_tex(data);
-	test_3d(data);
+//	test_3d(data);
 	//		test_two_triangle(data);
 	//ft_exit(&data);
 	return (EXIT_SUCCESS);

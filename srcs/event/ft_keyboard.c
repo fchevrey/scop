@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:01:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/12/16 16:01:27 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:55:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int				ft_keyboard(int key, int repeat, SDL_Event *event, t_data *data)
 	if (ret == -1)
 	{
 		keyrelease_do_event(key, data);
-		ft_putstr("quitting...\n");
 		ft_exit(&data);
 	}
 	return (0);

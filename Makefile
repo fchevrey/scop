@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/04/29 19:06:19 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/01 14:51:39 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,14 @@ ORANGE = [038;2;239;138;5
 SRCS_DIR = srcs
 
 SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
-	   test_3d.c\
-	   event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
-	   event/ft_mouse.c event/resize.c\
 		\
-		init/add_shader.c init/load_shader.c\
+		event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
+		event/ft_mouse.c event/resize.c\
 		\
-		tga/parse_tga.c tga/decode_tga.c\
+		init/add_shader.c init/load_shader.c init/init_data.c\
+		init/init_shaders.c init/init_matrix.c\
+		\
+		tga/parse_tga.c tga/decode_tga.c tga/load_gl_texture.c\
 		\
 		rendering/render.c
 		#test_rectangle.c test_two_triangle.c test_texts.c test_double_tex.c  \

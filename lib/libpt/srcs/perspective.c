@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 18:39:45 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/29 13:04:55 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:08:27 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ float near, float far)
 	//r = ratio * tan_half * near;
 	l = -r;
 	b = -t;
-	ft_putendl("pouet");
 	/*m0 column major */ //work but weird
 	/*dst.n[0][0] = (2 * near) / (r - l);
 	dst.n[1][1] = (2 * near) / (t - b);

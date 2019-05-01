@@ -2,7 +2,7 @@
 #include "init.h"
 #include "tga.h"
 
-static int				load_gl_texture(unsigned int *text_number, char *filename)
+/*static int				load_gl_texture(unsigned int *text_number, char *filename)
 {
 	t_texture	*txt;
 
@@ -22,7 +22,7 @@ static int				load_gl_texture(unsigned int *text_number, char *filename)
 	glGenerateMipmap(GL_TEXTURE_2D);
 	free_tex(&txt);
 	return (1);
-}
+}*/
 
 void		print_float_arr(float *arr, int size)
 {
@@ -154,7 +154,7 @@ void			test_3d(t_data *data)
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram_orange, "projection"),
 			1, GL_FALSE, proj_ptr);
 	SDL_Event			event;
-	int quit = 0;
+	int quit = 1;
 	while (!quit)
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/29 18:49:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 14:16:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_data
 	t_4matrix		model;
 	t_4matrix		view;
 	t_4matrix		proj;
+	t_vecfl			rot_axe;
 }					t_data;
 
 #endif
