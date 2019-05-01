@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:09:38 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/03/19 15:34:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:18:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event.h"
 #include <stdlib.h>
 
-static t_funar_keyb		add_one(int key, int repeat, void (*f)(t_data*))
+/*static t_funar_keyb		add_one(int key, int repeat, void (*f)(t_data*))
 {
 	t_funar_keyb	item;
 
@@ -21,7 +21,7 @@ static t_funar_keyb		add_one(int key, int repeat, void (*f)(t_data*))
 	item.repeat = repeat;
 	item.f = f;
 	return (item);
-}
+}*/
 
 t_funar_keyb			*fill_funar_keypress(int *size)
 {

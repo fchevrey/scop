@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/05/01 14:51:39 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/01 18:17:00 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,11 @@ SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
 		\
 		init/add_shader.c init/load_shader.c init/init_data.c\
 		init/init_shaders.c init/init_matrix.c\
+		\
+		parser/parse.c parser/fill_funar_parse.c parser/prefix_ok.c\
+		parser/compare_prefix.c parser/parse_obj_vertex.c parser/parse_next.c\
+		parser/parse_obj_normal.c parser/parse_obj_texture.c \
+		parser/parse_obj_face.c\
 		\
 		tga/parse_tga.c tga/decode_tga.c tga/load_gl_texture.c\
 		\
@@ -72,7 +77,7 @@ LIB_INCS =	-I $(LIBFT_DIR)/includes/ \
 			$(SDL2_INC) \
 			-I $(GLAD_PATH)/ 
 
-HEADER = #defines.h scop.h  parser.h struct.h event.h rendering.h
+HEADER = defines.h scop.h  parser.h struct.h event.h rendering.h
 
 HEADERS = $(addprefix $(HEADER_DIR), $(HEADER))
 
@@ -95,7 +100,7 @@ FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework Core
 #FRAMEWORK = -framework Carbon -framework OpenGL -framework IOKit -framework CoreVideo -lglfw
 #LINUX = -lGL -lGLU -lglut
 
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 MESSAGE = "make[1]: Nothing to be done for 'all'"
 DONE_MESSAGE = "\033$(GREEN)2m✓\t\033$(GREEN)mDONE !\033[0m\

@@ -6,15 +6,16 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/01 15:06:21 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:17:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scop.h"
 #include "event.h"
 #include "init.h"
+#include "parser.h"
 
-static int		init_library(t_data *data, int *ac, char **av)
+static int		init_library(t_data *data)
 {
 	t_point		size;
 
@@ -49,7 +50,7 @@ static int		init_library(t_data *data, int *ac, char **av)
 	}
 	return (1);
 }
-
+#include <stdio.h>
 int				main(int ac, char **av)
 {
 	t_data		*data;
@@ -60,7 +61,9 @@ int				main(int ac, char **av)
 	//		ft_error("error while reading file", NULL, NULL);
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (EXIT_FAILURE);
-	if (!init_library(data, &ac, av))
+	if (!init_library(data))
+		return (EXIT_FAILURE);
+	if (!parse(data, av[1]))
 		return (EXIT_FAILURE);
 	if (!init_data(data))
 		return (EXIT_FAILURE);
