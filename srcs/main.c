@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/01 18:17:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:48:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int				main(int ac, char **av)
 {
 	t_data		*data;
 
+	if (!av)
+		return (0);
 	if (ac != 2)
 		return (ft_error("usage : ./scop filename", NULL, NULL));
 	//	if (!av || !av[1] || !parse(av[1]))
@@ -63,9 +65,9 @@ int				main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (!init_library(data))
 		return (EXIT_FAILURE);
-	if (!parse(data, av[1]))
-		return (EXIT_FAILURE);
 	if (!init_data(data))
+		return (EXIT_FAILURE);
+	if (!parse(data, av[1]))
 		return (EXIT_FAILURE);
 	main_loop(data);
 	///glEnable(GL_DEPTH_TEST);
