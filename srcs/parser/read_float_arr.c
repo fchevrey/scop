@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_obj_vertex.c                                 :+:      :+:    :+:   */
+/*   read_float_arr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/30 14:56:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 17:30:56 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/02 18:01:13 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/02 18:01:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char				*create_format(char *pref, int size)
 		return (ft_strjoin(pref, "%f%f%f%f"));
 	return (NULL);
 }
-static int		init_info(char *pref, int size, t_info_line *info)
+static int		init_info(char *pref, int size, t_line_info *info)
 {
 	if (!(info->tmp = (float*)malloc(sizeof(float) * size)))
 		return (0);
@@ -71,12 +71,13 @@ int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
 	t_line_info		info;
 	t_list			*lst;
 
-	if (!init_info(pref, size))
+	if (!init_info(pref, size, &info))
 		return (0);
 	if (parse_line(NULL, &info, *line) <= 0)
 		return (0);
 	parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * info.len, size);//must be source of error
 	lst = parse->buf_lst;
+	ft_strdel(line);
 	while ((rd = get_next_line(parse->fd, line)) > 0)
 	{
 		if (!*line)
@@ -85,34 +86,13 @@ int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
 		{
 			if (prefix_ok(*line, parse->cmp) >= 0)
 				break;
+			ft_strdel(line);
 			continue;
 		}
 		parse_line(lst, &info, *line);
 		lst = lst->next;
+		ft_strdel(line);
 	}
 	del_info(&info);
-	return (1);
-}
-
-void	print_float(t_list *elem)
-{
-	static int		i = 0;
-	float			*arr;
-
-	arr = (float*)elem->content;
-	printf("%d : %f %f %f\n", i, arr[0], arr[1], arr[2]);
-	i++;
-}
-
-void	del(void *elem)
-{
-	ft_strdel((char**)&elem);
-}
-
-int		parse_obj_vertex(t_parse *parse, char **line)
-{
-	read_vertex(parse, line, "v ", 3);
-	ft_lstiter(parse->buf_lst, &print_float);
-	ft_lstdel(&parse->buf_lst, &del);
 	return (1);
 }

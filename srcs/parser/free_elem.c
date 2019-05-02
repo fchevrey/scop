@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compare_prefix.c                                   :+:      :+:    :+:   */
+/*   parse_obj_vertex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/01 17:21:22 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 18:08:22 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/04/30 14:56:30 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/02 18:26:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int		compare_prefix(char const *s1, char const *cmp)
+void	free_elem(void *elem)
 {
-	int		i;
-
-	i = 0;
-	if (!s1 || !cmp || ft_strlen(cmp) > ft_strlen(s1))
-		return (0);
-	while (cmp[i])
-	{
-		if (cmp[i] != s1[i])
-			return (0);
-		i++;
-	}
-	return (1);
+	free(elem);
 }

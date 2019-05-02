@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:56:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 17:32:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:50:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 	return (1);
 }*/
 
-void	print_float(t_list *elem)
+static void		print_float(t_list *elem)
 {
 	static int		i = 0;
 	float			*arr;
@@ -62,15 +62,11 @@ void	print_float(t_list *elem)
 	i++;
 }
 
-void	del(void *elem)
-{
-	ft_strdel((char**)&elem);
-}
-
 int		parse_obj_vertex(t_parse *parse, char **line)
 {
-	read_vertex(parse, line, "v ", 3);
+	ft_putendl("- vertex -");
+	read_float_arr(parse, line, "v ", 3);
 	ft_lstiter(parse->buf_lst, &print_float);
-	ft_lstdel(&parse->buf_lst, &del);
+	ft_lstdel(&parse->buf_lst, &free_elem);
 	return (1);
 }

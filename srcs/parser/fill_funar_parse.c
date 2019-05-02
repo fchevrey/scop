@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:29:57 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/01 18:20:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:35:31 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_funar_parse			*fill_funar_parse(int *size)
 
 	i = 0;
 	*size = 0;
-	nb_fct = 0;
+	nb_fct = 4;
 	if (!(tab = (t_funar_parse*)malloc(sizeof(t_funar_parse) * nb_fct)))
 		return (NULL);
 	*size = nb_fct;

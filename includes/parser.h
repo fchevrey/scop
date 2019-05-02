@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 17:22:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:59:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "scop.h"
 # define PARSE_EXIT -1
-# define PARSE_OTHER 0
-# define PARSE_VERTEX 1
-# define PARSE_TEXTURE 2
-# define PARSE_NORMAL 3
-# define PARSE_FACE 4
+# define PARSE_VERTEX 0
+# define PARSE_TEXTURE 1
+# define PARSE_NORMAL 2
+# define PARSE_FACE 3
+# define PARSE_OTHER 4
 
 typedef struct		s_line_info
 {
@@ -35,10 +35,10 @@ typedef struct		s_parse
 	int			is_texture;
 	int			is_normal;
 	t_list		*buf_lst;
-	char		*vertex_buffer;
-	char		*tex_buffer;
-	char		*normal_buffer;
-	char		*face_buffer;
+	float		*vertex_buffer;
+	float		*tex_buffer;
+	float		*normal_buffer;
+	float		*face_buffer;
 	char		**cmp;
 }			t_parse;
 
@@ -53,11 +53,13 @@ int				parse_obj_face(t_parse *parse, char **line);
 int				parse_obj_normal(t_parse *parse, char **line);
 int				parse_obj_texture(t_parse *parse, char **line);
 int				parse_obj_vertex(t_parse *parse, char **line);
+int				parse_next(t_parse *parse, char **line);
 t_funar_parse	*fill_funar_parse(int *size);
 int				prefix_ok(const char *s1, char **cmp);
 int				compare_prefix(const char *s1, const char *cmp);
 int				read_float_arr(t_parse *parse, char **line, char *pref,
 		int size);
+void			free_elem(void *elem);
 /*int		parse_obj_face(float *faces, t_data *data);
 int		parse_obj_normal(float *normal, t_data *data);
 int		parse_obj_texture(float *texture, t_data *data);
