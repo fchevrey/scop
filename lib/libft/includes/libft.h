@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:05:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/10 18:29:11 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 19:56:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct		s_list
 {
 	void			*content;
-	int				id;
+	size_t			id;
 	struct s_list	*next;
 }					t_list;
 
@@ -87,7 +87,7 @@ t_list				*ft_lstnew_cpy(void const *content, size_t content_size,
 void				ft_lstdelone(t_list **alst, void (*del)(void *));
 void				ft_lstdel(t_list **alst, void(*del)(void *));
 void				ft_lstadd(t_list **amst, t_list *new_elem);
-t_list				*ft_lstsrch(t_list *lst, int id);
+t_list				*ft_lstsrch(t_list *lst, size_t id);
 void				ft_lstadd_last(t_list *alst, t_list *new_elem);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 18:01:13 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 18:01:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 19:53:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,16 @@ static void		del_info(t_line_info *info)
 	info->tmp = NULL;
 }
 
-int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
+static int		loop(t_parse *parse, char **line, char *pref,
+		t_line_info *info)
 {
 	int				rd;
-	t_line_info		info;
 	t_list			*lst;
+	int				length;
 
-	if (!init_info(pref, size, &info))
-		return (0);
-	if (parse_line(NULL, &info, *line) <= 0)
-		return (0);
-	parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * info.len, size);//must be source of error
 	lst = parse->buf_lst;
 	ft_strdel(line);
+	length = 0;
 	while ((rd = get_next_line(parse->fd, line)) > 0)
 	{
 		if (!*line)
@@ -89,10 +86,28 @@ int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
 			ft_strdel(line);
 			continue;
 		}
-		parse_line(lst, &info, *line);
+		++length;
+		parse_line(lst, info, *line);
 		lst = lst->next;
 		ft_strdel(line);
 	}
+	return (length);
+}
+
+int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
+{
+	t_line_info		info;
+	int				ret;
+
+	if (!init_info(pref, size, &info))
+		return (0);
+	if (parse_line(NULL, &info, *line) <= 0)
+		return (0);
+	if (!(parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * info.len,
+					size)))//could be source of error
+		return (0);
+	ret = 0;
+	ret = loop(parse, line, pref, &info);
 	del_info(&info);
-	return (1);
+	return (ret);
 }

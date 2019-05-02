@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:50:03 by fchevrey          #+#    #+#             */
-/*   Updated: 2018/06/07 15:17:29 by mlantonn         ###   ########.fr       */
+/*   Updated: 2019/05/02 19:57:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		add_new_tex(t_point size, SDL_Renderer *ren, t_list **src)
 {
 	t_texture	*tex;
 	t_list		*lst;
-	int			id;
+	size_t		id;
 
 	if (!(tex = texture_new(size, ren)))
 		return (-1);

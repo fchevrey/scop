@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:56:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 18:50:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 20:02:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,13 @@ static void		print_float(t_list *elem)
 
 int		parse_obj_vertex(t_parse *parse, char **line)
 {
+	size_t		size;
+
 	ft_putendl("- vertex -");
 	read_float_arr(parse, line, "v ", 3);
 	ft_lstiter(parse->buf_lst, &print_float);
+	size = lst_to_arr(parse->buf_lst, &parse->vertex_buffer);
+	printf("size vertex = %zu\n", size);
 	ft_lstdel(&parse->buf_lst, &free_elem);
 	return (1);
 }

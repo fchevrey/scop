@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 18:59:17 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 19:50:42 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int				compare_prefix(const char *s1, const char *cmp);
 int				read_float_arr(t_parse *parse, char **line, char *pref,
 		int size);
 void			free_elem(void *elem);
+size_t			lst_to_arr(t_list *lst, float **to_fill);
 /*int		parse_obj_face(float *faces, t_data *data);
 int		parse_obj_normal(float *normal, t_data *data);
 int		parse_obj_texture(float *texture, t_data *data);

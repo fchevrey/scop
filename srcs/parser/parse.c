@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 13:31:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 18:59:50 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/02 20:05:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,32 @@ static int		read_all(t_parse *parse)
 	return (1);
 }
 
-static void			free_parse(t_parse **parse)
+static void			free_parse(t_parse *parse)
 {
-	ft_tabdel((*parse)->cmp);
-	*parse = NULL;
+	ft_tabdel(&parse->cmp);
+	parse->cmp = NULL;
+	if (parse->buf_lst)
+		free(parse->buf_lst);//not the good free
+	if (parse->vertex_buffer)
+		free(parse->vertex_buffer);
+	if (parse->tex_buffer)
+		free(parse->tex_buffer);
+	if (parse->normal_buffer)
+		free(parse->normal_buffer);
+	if (parse->face_buffer)
+		free(parse->face_buffer);
+}
+static int			parse_init(t_parse *parse)
+{
+	parse->cmp = NULL;
+	parse->buf_lst = NULL;
+	parse->vertex_buffer = NULL;
+	parse->tex_buffer = NULL;
+	parse->normal_buffer = NULL;
+	parse->face_buffer = NULL;
+	parse->is_texture = 0;
+	parse->is_normal = 0;
+	return (1);
 }
 
 int		parse(t_data *data, char *filename)
@@ -74,11 +96,13 @@ int		parse(t_data *data, char *filename)
 
 	if (!filename || !data)
 		return (0);
+	parse_init(&parse);
 	if (!(parse.cmp = ft_strsplit("v |vt |vn |f ", '|')))
 		return (0);
 	if ((parse.fd = open(filename, O_RDONLY | O_NOFOLLOW)) == -1)
 		return (0);
 	read_all(&parse);
 	close(parse.fd);
+	free_parse(&parse);
 	return (1);
 }
