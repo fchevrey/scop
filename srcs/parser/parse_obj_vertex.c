@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 14:56:30 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 20:02:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/03 14:56:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 	ft_putendl(pref);
 	while ((rd = get_next_line(parse->fd, line)) > 0)
 	{
-		if (!*line)
+->		if (!*line)
 			continue ;
 		if (!compare_prefix(*line, pref))
 		{
@@ -69,7 +69,8 @@ int		parse_obj_vertex(t_parse *parse, char **line)
 	ft_putendl("- vertex -");
 	read_float_arr(parse, line, "v ", 3);
 	ft_lstiter(parse->buf_lst, &print_float);
-	size = lst_to_arr(parse->buf_lst, &parse->vertex_buffer);
+	size = lst_to_arr(parse->buf_lst, &parse->vertex_buffer->buf);
+	parse->vertex_buffer->size = size;
 	printf("size vertex = %zu\n", size);
 	ft_lstdel(&parse->buf_lst, &free_elem);
 	return (1);

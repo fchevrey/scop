@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_obj_texture.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/03 14:22:53 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/03 14:57:47 by fchevrey         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "parser.h"
 
@@ -15,11 +26,11 @@ int		parse_obj_texture(t_parse *parse, char **line)
 	size_t		size;
 
 	ft_putendl("- texture -");
-	parser->is_texture = 1;
+	parse->is_texture = 1;
 	read_float_arr(parse, line, "vt ", 2);
 	ft_lstiter(parse->buf_lst, &print_float);
-	lst_to_arr(parse->buf_lst, &parse->tex_buffer);
-	size = lst_to_arr(parse->buf_lst, &parse->vertex_buffer);
+	size = lst_to_arr(parse->buf_lst, &parse->tex_buffer->buf);
+	parse->tex_buffer->size = size;
 	printf("size texture = %zu\n", size);
 	ft_lstdel(&parse->buf_lst, &free_elem);
 	if (!parse || !line)

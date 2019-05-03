@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 19:50:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/03 14:59:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,27 @@ typedef struct		s_line_info
 	int		len;
 }					t_line_info;
 
+typedef struct		s_float_buf
+{
+	t_list		*lst;
+	float		*buf;
+	size_t		size;
+}					t_float_buf;
+
 typedef struct		s_parse
 {
-	int			fd;
-	int			parse_type;
-	int			is_texture;
-	int			is_normal;
-	t_list		*buf_lst;
-	float		*vertex_buffer;
-	float		*tex_buffer;
-	float		*normal_buffer;
-	float		*face_buffer;
-	char		**cmp;
+	int				fd;
+	int				parse_type;
+	int				is_texture;
+	int				is_normal;
+	t_list			*buf_lst;
+	t_float_buf		*vertex_buffer;
+	t_float_buf		*tex_buffer;
+	t_float_buf		*normal_buffer;
+	t_float_buf		*vert_index;
+	t_float_buf		*norm_index;
+	t_float_buf		*tex_index;
+	char			**cmp;
 }			t_parse;
 
 typedef struct			s_funar_parse
@@ -61,6 +70,10 @@ int				read_float_arr(t_parse *parse, char **line, char *pref,
 		int size);
 void			free_elem(void *elem);
 size_t			lst_to_arr(t_list *lst, float **to_fill);
+int				init_info(char *pref, int size, t_line_info *info);
+void			del_info(t_line_info *info);
+t_float_buf		*float_buf_new(void);
+void			free_float_buf(t_float_buf **src);
 /*int		parse_obj_face(float *faces, t_data *data);
 int		parse_obj_normal(float *normal, t_data *data);
 int		parse_obj_texture(float *texture, t_data *data);

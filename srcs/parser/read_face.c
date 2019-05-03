@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_float_arr.c                                   :+:      :+:    :+:   */
+/*   read_face.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 18:01:13 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 14:26:03 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/03 14:31:05 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/03 15:49:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdio.h>
 
-static int				parse_line(t_list *lst, t_line_info *info, char *line)
+static int				add_to_lst(t_parse *parse, t_face_info *info, int scan)
+{
+}
+
+static int				parse_line(t_parse *parse, t_face_info *info, char *line)
 {
 	int		scan;
 
 	scan = 0;
-	if (info->len == 2)
+	if (info->len == 4)
 	{
-		scan = sscanf(line, info->format, &info->tmp[0], &info->tmp[1]);
+		scan = sscanf(line, info->format, &info->vert_index[0],
+			&info->vert_index[1], &info->vert_index[2], &info->vert_index[3]);
 	}
-	else if (info->len == 3)
+	else if (info->len == 8)
 	{
-		scan = sscanf(line, info->format, &info->tmp[0], &info->tmp[1],
-				&info->tmp[2]);
+		scan = sscanf(line, info->format, &info->vert_index[0],
+			&info->vert_index[1], &info->vert_index[2], &info->vert_index[3],
+			&info->tex_index[0], &info->tex_index[1], &info->tex_index[2],
+			&info->tex_index[3]);
 	}
-	else if (info->len == 4)
+	else if (info->len == 12)
 	{
-		scan = sscanf(line, info->format, &info->tmp[0], &info->tmp[1],
-					&info->tmp[2], &info->tmp[3]);
+		scan = sscanf(line, info->format, &info->vert_index[0],
+			&info->vert_index[1], &info->vert_index[2], &info->vert_index[3],
+			&info->tex_index[0], &info->tex_index[1], &info->tex_index[2],
+			&info->tex_index[3], &info->norm_index[0], &info->norm_index[1],
+			&info->norm_index[2], &info->norm_index[3]);
 	}
-	if (scan > 0 && lst)
-		lst->next = ft_lstnew_cpy(info->tmp, sizeof(float) * scan, scan);
-	return (scan);
+	return (add_to_lst(parse, info, scan));
 }
 
 static int		loop(t_parse *parse, char **line, char *pref,
@@ -66,17 +74,24 @@ static int		loop(t_parse *parse, char **line, char *pref,
 	return (length);
 }
 
-int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
+int				read_face(t_parse *parse, char **line, char *pref)
 {
 	t_line_info		info;
 	int				ret;
+	int				size;
 	int				line_size;
 
+	if (parse->is_texture && parse->is_normal)
+		size = 15;
+	else if (parse->is_texture || parse->is_normal)
+		size = 10;
+	else
+		size = 5;
 	if (!init_info(pref, size, &info))
 		return (0);
 	if ((line_size = parse_line(NULL, &info, *line)) <= 0)
 		return (0);
-	if (!(parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * info.len,
+	if (!(parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * line_size,
 					line_size)))
 		return (0);
 	ret = 0;
