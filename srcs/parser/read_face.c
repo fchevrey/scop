@@ -6,15 +6,83 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:31:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 15:49:58 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/03 18:40:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdio.h>
-
-static int				add_to_lst(t_parse *parse, t_face_info *info, int scan)
+static	void			reorder_tmp(t_face_info *info)
 {
+	info->tmp_v[0] = info->tmp_v[0];
+	info->tmp_v[1] = info->tmp_v[2];
+	info->tmp_v[2] = info->tmp_v[3];
+	info->tmp_t[0] = info->tmp_t[0];
+	info->tmp_t[1] = info->tmp_t[2];
+	info->tmp_t[2] = info->tmp_t[3];
+	info->tmp_n[0] = info->tmp_n[0];
+	info->tmp_n[1] = info->tmp_n[2];
+	info->tmp_n[2] = info->tmp_n[3];
+}
+
+static int				add_to_lst4(t_parse *parse, t_face_info *info,
+		int scan, int count)
+{
+	t_list		*elem;
+
+	printf("add_to_list4\n");
+	if ((scan % 4 != 0 || scan != info->len)
+		|| (parse->is_normal && parse->is_texture && scan != 12)
+		|| ((parse->is_normal || parse->is_texture) && scan != 8))
+		return (0);
+	if (count < 0)
+		return (1);
+	if (!(elem = ft_lstnew_cpy(info->tmp_v, sizeof(float) * 3, 3)))
+		return (0);
+	ft_lstadd_last(parse->vert_index->lst, elem);
+	if (scan > 7 && parse->is_texture)
+	{
+		if (!(elem = ft_lstnew_cpy(info->tmp_t, sizeof(float) * 2, 2)))
+			return (0);
+		ft_lstadd_last(parse->tex_index->lst, elem);
+	}
+	if (scan > 7 && parse->is_normal)
+	{
+		if (!(elem = ft_lstnew_cpy(info->tmp_n, sizeof(float) * 3, 3)))
+			return (0);
+		ft_lstadd_last(parse->norm_index->lst, elem);
+	}
+	reorder_tmp(info);
+	return (add_to_lst4(parse, info, scan, count -1));
+}
+
+static int				add_to_lst3(t_parse *parse, t_face_info *info, int scan)
+{
+	t_list		*elem;
+
+	if ((scan != info->len - 1) && (scan != info->len - 2) &&
+			(scan != info->len - 3))
+		return (0);
+	if (parse->is_normal && parse->is_texture && scan != 9)
+		return (0);
+	else if ((parse->is_normal || parse->is_texture) && scan < 6)
+		return (0);
+	if (!(elem = ft_lstnew_cpy(info->tmp_v, sizeof(float) * 3, 3)))
+		return (0);
+	ft_lstadd_last(parse->vert_index->lst, elem);
+	if (scan > 5 && parse->is_texture)
+	{
+		if (!(elem = ft_lstnew_cpy(info->tmp_t, sizeof(float) * 3, 3)))
+			return (0);
+		ft_lstadd_last(parse->tex_index->lst, elem);
+	}
+	if (scan > 5 && parse->is_normal)
+	{
+		if (!(elem = ft_lstnew_cpy(info->tmp_n, sizeof(float) * 3, 3)))
+			return (0);
+		ft_lstadd_last(parse->norm_index->lst, elem);
+	}
+	return (1);
 }
 
 static int				parse_line(t_parse *parse, t_face_info *info, char *line)
@@ -24,35 +92,34 @@ static int				parse_line(t_parse *parse, t_face_info *info, char *line)
 	scan = 0;
 	if (info->len == 4)
 	{
-		scan = sscanf(line, info->format, &info->vert_index[0],
-			&info->vert_index[1], &info->vert_index[2], &info->vert_index[3]);
+		scan = sscanf(line, info->format, &info->tmp_v[0],
+			&info->tmp_v[1], &info->tmp_v[2], &info->tmp_v[3]);
 	}
 	else if (info->len == 8)
 	{
-		scan = sscanf(line, info->format, &info->vert_index[0],
-			&info->vert_index[1], &info->vert_index[2], &info->vert_index[3],
-			&info->tex_index[0], &info->tex_index[1], &info->tex_index[2],
-			&info->tex_index[3]);
+		scan = sscanf(line, info->format, &info->tmp_v[0], &info->tmp_t[0],
+			&info->tmp_v[1], &info->tmp_t[1], &info->tmp_v[2],
+			&info->tmp_t[2], &info->tmp_v[3], &info->tmp_t[3]);
 	}
 	else if (info->len == 12)
 	{
-		scan = sscanf(line, info->format, &info->vert_index[0],
-			&info->vert_index[1], &info->vert_index[2], &info->vert_index[3],
-			&info->tex_index[0], &info->tex_index[1], &info->tex_index[2],
-			&info->tex_index[3], &info->norm_index[0], &info->norm_index[1],
-			&info->norm_index[2], &info->norm_index[3]);
+		scan = sscanf(line, info->format, &info->tmp_v[0],
+			&info->tmp_t[0], &info->tmp_n[0], &info->tmp_v[1],
+			&info->tmp_t[1], &info->tmp_n[1], &info->tmp_v[2],
+			&info->tmp_t[2], &info->tmp_n[2], &info->tmp_v[3],
+			&info->tmp_t[3], &info->tmp_n[3]);
 	}
-	return (add_to_lst(parse, info, scan));
+	if (scan % 3 == 0)
+		return (add_to_lst3(parse, info, scan));
+	return (add_to_lst4(parse, info, scan, 1));
 }
 
 static int		loop(t_parse *parse, char **line, char *pref,
-		t_line_info *info)
+		t_face_info *info)
 {
 	int				rd;
-	t_list			*lst;
 	int				length;
 
-	lst = parse->buf_lst;
 	ft_strdel(line);
 	length = 0;
 	while ((rd = get_next_line(parse->fd, line)) > 0)
@@ -67,8 +134,7 @@ static int		loop(t_parse *parse, char **line, char *pref,
 			continue;
 		}
 		++length;
-		parse_line(lst, info, *line);
-		lst = lst->next;
+		parse_line(parse, info, *line);
 		ft_strdel(line);
 	}
 	return (length);
@@ -76,26 +142,30 @@ static int		loop(t_parse *parse, char **line, char *pref,
 
 int				read_face(t_parse *parse, char **line, char *pref)
 {
-	t_line_info		info;
+	t_face_info		info;
 	int				ret;
 	int				size;
-	int				line_size;
 
 	if (parse->is_texture && parse->is_normal)
-		size = 15;
+		size = 12;
 	else if (parse->is_texture || parse->is_normal)
-		size = 10;
+		size = 8;
 	else
-		size = 5;
-	if (!init_info(pref, size, &info))
+		size = 4;
+	printf("read face size = %d\n", size);
+	if (!init_face_info(pref, size, &info))
 		return (0);
-	if ((line_size = parse_line(NULL, &info, *line)) <= 0)
-		return (0);
-	if (!(parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * line_size,
-					line_size)))
+	ft_putendl("parse line");
+	ft_putendl(*line);
+	ft_putendl(info.format);
+	ft_putendl("info->len");
+	ft_putnbrnl(info.len);
+	if ((parse_line(parse, &info, *line)) <= 0)
 		return (0);
 	ret = 0;
+	ft_putendl("begin loop");
 	ret = loop(parse, line, pref, &info);
-	del_info(&info);
+	ft_putnbrnl(ret);
+	del_face_info(&info);
 	return (ret);
 }

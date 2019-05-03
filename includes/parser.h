@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 14:59:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/03 18:18:09 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ typedef struct		s_line_info
 	int		len;
 }					t_line_info;
 
+typedef struct		s_face_info
+{
+	int		*tmp_v;
+	int		*tmp_t;
+	int		*tmp_n;
+	char	*format;
+	int		len;
+}					t_face_info;
+
+typedef struct		s_int_buf
+{
+	t_list		*lst;
+	int			*buf;
+	size_t		size;
+}					t_int_buf;
+
 typedef struct		s_float_buf
 {
 	t_list		*lst;
@@ -45,9 +61,9 @@ typedef struct		s_parse
 	t_float_buf		*vertex_buffer;
 	t_float_buf		*tex_buffer;
 	t_float_buf		*normal_buffer;
-	t_float_buf		*vert_index;
-	t_float_buf		*norm_index;
-	t_float_buf		*tex_index;
+	t_int_buf		*vert_index;
+	t_int_buf		*norm_index;
+	t_int_buf		*tex_index;
 	char			**cmp;
 }			t_parse;
 
@@ -74,6 +90,11 @@ int				init_info(char *pref, int size, t_line_info *info);
 void			del_info(t_line_info *info);
 t_float_buf		*float_buf_new(void);
 void			free_float_buf(t_float_buf **src);
+void			del_face_info(t_face_info *info);
+int				init_face_info(char *pref, int size, t_face_info *info);
+int				read_face(t_parse *parse, char **line, char *pref);
+void			free_int_buf(t_int_buf **src);
+t_int_buf		*int_buf_new(void);
 /*int		parse_obj_face(float *faces, t_data *data);
 int		parse_obj_normal(float *normal, t_data *data);
 int		parse_obj_texture(float *texture, t_data *data);

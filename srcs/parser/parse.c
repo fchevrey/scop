@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 13:31:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 15:14:48 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/03 18:17:02 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static void			free_parse(t_parse *parse)
 	if (parse->normal_buffer)
 		free_float_buf(&parse->normal_buffer);
 	if (parse->vert_index)
-		free_float_buf(&parse->vert_index);
+		free_int_buf(&parse->vert_index);
 	if (parse->norm_index)
-		free_float_buf(&parse->norm_index);
+		free_int_buf(&parse->norm_index);
 	if (parse->tex_index)
-		free_float_buf(&parse->tex_index);
+		free_int_buf(&parse->tex_index);
 }
 static int			parse_init(t_parse *parse)
 {
@@ -62,11 +62,11 @@ static int			parse_init(t_parse *parse)
 		return (0);
 	if (!(parse->normal_buffer = float_buf_new()))
 		return (0);
-	if (!(parse->vert_index = float_buf_new()))
+	if (!(parse->vert_index = int_buf_new()))
 		return (0);
-	if (!(parse->norm_index = float_buf_new()))
+	if (!(parse->norm_index = int_buf_new()))
 		return (0);
-	if (!(parse->tex_index = float_buf_new()))
+	if (!(parse->tex_index = int_buf_new()))
 		return (0);
 	parse->is_texture = 0;
 	parse->is_normal = 0;

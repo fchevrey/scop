@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/05/03 15:02:50 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/03 18:18:43 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,9 @@ SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
 		parser/parse_obj_normal.c parser/parse_obj_texture.c \
 		parser/parse_obj_face.c parser/read_float_arr.c parser/del_info.c\
 		parser/free_elem.c parser/lst_to_arr.c parser/init_info.c\
-		parser/float_buf_new.c parser/free_float_buf.c\
-		\
+		parser/float_buf_new.c parser/free_float_buf.c parser/read_face.c\
+		parser/init_face_info.c parser/del_face_info.c parser/int_buf_new.c\
+		parser/free_int_buf.c\
 		tga/parse_tga.c tga/decode_tga.c tga/load_gl_texture.c\
 		\
 		rendering/render.c

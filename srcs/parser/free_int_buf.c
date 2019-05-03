@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   float_buf_new.c                                    :+:      :+:    :+:   */
+/*   free_int_buf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/03 14:44:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 17:34:08 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/03 18:15:05 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/03 18:15:06 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_float_buf		*float_buf_new(void)
+void		free_int_buf(t_int_buf **src)
 {
-	t_float_buf		*dst;
-
-	if (!(dst = (t_float_buf*)malloc(sizeof(t_float_buf))))
-		return (NULL);
-	if (!(dst->lst = ft_lstnew(NULL, 0)))
-		return (NULL);
-	dst->buf = NULL;
-	dst->size = 0;
-	return (dst);
+	if (!src || *src)
+		return ;
+	if ((*src)->lst)
+	{
+		ft_lstdel(&(*src)->lst, &free_elem);
+	}
+	(*src)->lst = NULL;
+	if ((*src)->buf)
+		free((*src)->buf);
+	(*src)->buf = NULL;
+	free(*src);
+	*src = NULL;
 }
