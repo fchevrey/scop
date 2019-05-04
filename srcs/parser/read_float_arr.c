@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 18:01:13 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 14:26:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 11:41:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
 
 	if (!init_info(pref, size, &info))
 		return (0);
-	if ((line_size = parse_line(NULL, &info, *line)) <= 0)
+	if ((line_size = parse_line(parse->buf_lst, &info, *line)) <= 0)
 		return (0);
 	if (!(parse->buf_lst = ft_lstnew_cpy(info.tmp, sizeof(float) * info.len,
 					line_size)))

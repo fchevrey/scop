@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:31:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 18:40:01 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 11:35:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,20 +152,12 @@ int				read_face(t_parse *parse, char **line, char *pref)
 		size = 8;
 	else
 		size = 4;
-	printf("read face size = %d\n", size);
 	if (!init_face_info(pref, size, &info))
 		return (0);
-	ft_putendl("parse line");
-	ft_putendl(*line);
-	ft_putendl(info.format);
-	ft_putendl("info->len");
-	ft_putnbrnl(info.len);
 	if ((parse_line(parse, &info, *line)) <= 0)
 		return (0);
 	ret = 0;
-	ft_putendl("begin loop");
 	ret = loop(parse, line, pref, &info);
-	ft_putnbrnl(ret);
 	del_face_info(&info);
 	return (ret);
 }

@@ -29,7 +29,5 @@ int				parse_obj_face(t_parse *parse, char **line)
 //	ft_lstdel(&parse->buf_lst, &free_elem);
 //	ft_putendl("face");
 	ft_strdel(line);
-	if (!parse || !line)
-		return (1);
 	return (1);
 }

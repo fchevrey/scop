@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 18:15:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 18:15:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 12:07:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		free_int_buf(t_int_buf **src)
 {
-	if (!src || *src)
+	if (!src || !*src)
 		return ;
 	if ((*src)->lst)
 	{

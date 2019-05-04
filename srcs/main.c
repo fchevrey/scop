@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 14:25:34 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 12:06:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int		init_library(t_data *data)
 	}
 	return (1);
 }
+
 int				main(int ac, char **av)
 {
 	t_data		*data;
