@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 13:51:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 16:28:44 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int				read_face(t_parse *parse, char **line, char *pref);
 void			free_int_buf(t_int_buf **src);
 t_int_buf		*int_buf_new(void);
 int				create_gl_buffer(t_data *data, t_parse *parse);
+void			centralize_vertex(t_float_buf *src);
 /*int		parse_obj_face(float *faces, t_data *data);
 int		parse_obj_normal(float *normal, t_data *data);
 int		parse_obj_texture(float *texture, t_data *data);

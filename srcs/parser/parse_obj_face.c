@@ -34,7 +34,7 @@ static void		fill(t_list *lst, unsigned int *arr)
 		lst = lst->next;
 	}
 }
-static void		print_int(t_list *elem)
+/*static void		print_int(t_list *elem)
 {
 	static unsigned int		i = 0;
 	unsigned int			*arr;
@@ -45,7 +45,7 @@ static void		print_int(t_list *elem)
 		printf("%u : %u %u %u\n", i, arr[0], arr[1], arr[2]);
 		i++;
 	}
-}
+}*/
 
 static int		create_buf_from_list(t_int_buf *src)
 {
@@ -66,8 +66,8 @@ int				parse_obj_face(t_parse *parse, char **line)
 	ft_putendl("face");
 	if (!read_face(parse, line, "f "))
 		return (0);
-	ft_putendl("- vertex index -");
-	ft_lstiter(parse->vert_index->lst, &print_int);
+/*	ft_putendl("- vertex index -");
+	ft_lstiter(parse->vert_index->lst, &print_int);*/
 /*	ft_putendl("- normal index -");
 	ft_lstiter(parse->norm_index->lst, &print_int);
 	ft_putendl("- texture index -");

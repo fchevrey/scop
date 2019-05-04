@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:31:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 14:34:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 15:40:01 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ static int				add_to_lst4(t_parse *parse, t_face_info *info,
 {
 	t_list		*elem;
 
-	printf("add_to_lst4\n");
-	printf("parse->is_normal = %d\n", parse->is_normal);
-	printf("parse->is_texture = %d\n", parse->is_texture);
 	if ((scan % 4 != 0 || scan != info->len)
 		|| (parse->is_normal && parse->is_texture && scan != 12)
 		|| ((!parse->is_normal && parse->is_texture) && scan != 8)
@@ -40,7 +37,6 @@ static int				add_to_lst4(t_parse *parse, t_face_info *info,
 		return (0);
 	if (count < 0)
 		return (1);
-	printf("no errors\n");
 	if (!(elem = ft_lstnew_cpy(info->tmp_v, sizeof(float) * 3, 3)))
 		return (0);
 	ft_lstadd_last(parse->vert_index->lst, elem);
@@ -64,7 +60,6 @@ static int				add_to_lst3(t_parse *parse, t_face_info *info, int scan)
 {
 	t_list		*elem;
 
-	printf("add_to_lst3 \n");
 	if ((scan != info->len - 1) && (scan != info->len - 2) &&
 			(scan != info->len - 3))
 		return (0);
@@ -95,7 +90,6 @@ static int				parse_line(t_parse *parse, t_face_info *info, char *line)
 	int		scan;
 
 	scan = 0;
-	printf("info->len = %d\n", info->len);
 	if (info->len == 4)
 	{
 		scan = sscanf(line, info->format, &info->tmp_v[0],
@@ -115,7 +109,6 @@ static int				parse_line(t_parse *parse, t_face_info *info, char *line)
 			&info->tmp_t[2], &info->tmp_n[2], &info->tmp_v[3],
 			&info->tmp_t[3], &info->tmp_n[3]);
 	}
-	printf("scanf = %d\n", scan);
 	if (scan < 12 && scan % 3 == 0)
 		return (add_to_lst3(parse, info, scan));
 	return (add_to_lst4(parse, info, scan, 1));
@@ -161,14 +154,10 @@ int				read_face(t_parse *parse, char **line, char *pref)
 		size = 4;
 	if (!init_face_info(pref, size, &info))
 		return (0);
-	printf("parseline : ");
-	printf("%s\n", *line);
 	if ((parse_line(parse, &info, *line)) <= 0)
 		return (0);
 	ret = 0;
-	printf("loop\n");
 	ret = loop(parse, line, pref, &info);
-	printf("ret = %d\n", ret);
 	del_face_info(&info);
 	return (ret);
 }
