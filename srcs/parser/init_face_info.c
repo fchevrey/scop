@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 15:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/03 18:10:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 13:50:47 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static char				*create_format(char *pref, int size)
 
 int		init_face_info(char *pref, int size, t_face_info *info)
 {
-	if (!(info->tmp_v = (int*)malloc(sizeof(int) * 4)))
+	if (!(info->tmp_v = (unsigned int*)malloc(sizeof(unsigned int) * 4)))
 		return (0);
-	if (!(info->tmp_t = (int*)malloc(sizeof(int) * 4)))
+	if (!(info->tmp_t = (unsigned int*)malloc(sizeof(unsigned int) * 4)))
 		return (0);
-	if (!(info->tmp_n = (int*)malloc(sizeof(int) * 4)))
+	if (!(info->tmp_n = (unsigned int*)malloc(sizeof(unsigned int) * 4)))
 		return (0);
 	if (!(info->format = create_format(pref, size)))
 		return (0);

@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:33:52 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/01 15:08:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 12:59:17 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 #include "tga.h"
 
-static void		init_form(t_data *data)//for test
+void		init_form(t_data *data)//for test
 {
 	float vert[] = {
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -85,7 +85,7 @@ static void		init_form(t_data *data)//for test
 int			init_data(t_data *data)
 {
 	init_shaders(data);
-	init_form(data);
+//	init_form(data);
 	init_matrix(data);
 	return (1);
 }

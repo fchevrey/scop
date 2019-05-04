@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 13:31:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 11:48:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 13:25:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int		read_all(t_parse *parse)
 	char		*line;
 	int			ret;
 
-	if (!parse)
-		return (1);//
 	while ((ret = get_next_line(parse->fd, &line)) > 0)
 	{
 		while ((parse->parse_type = prefix_ok(line, parse->cmp)) != -1)
@@ -86,9 +84,11 @@ int		parse(t_data *data, char *filename)
 		return (0);
 	if ((parse.fd = open(filename, O_RDONLY | O_NOFOLLOW)) == -1)
 		return (0);
-	//read_all(&parse);
-	read_all(NULL);
+	read_all(&parse);
+	create_gl_buffer(data, &parse);
+	//read_all(NULL);
 	close(parse.fd);
+	ft_putendl("b4 free");
 	free_parse(&parse);
 	return (1);
 }

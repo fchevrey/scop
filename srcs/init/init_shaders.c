@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:25:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/01 14:48:37 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 12:57:23 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ int			init_shaders(t_data *data)
 	char					*std_vert;
 
 	data->shader_prog = glCreateProgram();
-	frag_file = load_shader("shaders/f_3d_tex.glsl");
-	std_vert = load_shader("shaders/v_3d_tex.glsl");
+	//frag_file = load_shader("shaders/f_3d_tex.glsl");
+	//std_vert = load_shader("shaders/v_3d_tex.glsl");
+	frag_file = load_shader("shaders/orange.glsl");
+	std_vert = load_shader("shaders/v_3d.glsl");
 	vert_shader = add_shader(std_vert, &data->shader_prog, GL_VERTEX_SHADER);
 	frag_shader = add_shader(frag_file, &data->shader_prog, GL_FRAGMENT_SHADER);
 	glLinkProgram(data->shader_prog);

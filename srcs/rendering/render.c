@@ -8,7 +8,7 @@ void		render(t_data* data)
 
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
-	glBindTexture(GL_TEXTURE_2D, data->tex_ref);
+	//glBindTexture(GL_TEXTURE_2D, data->tex_ref);
 	glUseProgram(data->shader_prog);
 	glBindVertexArray(data->vao);
 	model_tmp = m4_rotation(vecfl_set(1.0, 0.0, 0.5), 1.5f);
@@ -19,6 +19,6 @@ void		render(t_data* data)
 	unsigned int viewLoc  = glGetUniformLocation(data->shader_prog, "view");
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model_arr);
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view_arr);
-	glDrawArrays(GL_TRIANGLES, 0, 36);//
+	glDrawElements(GL_TRIANGLES, data->ebo_size, GL_UNSIGNED_INT, 0);//
 	SDL_GL_SwapWindow(data->win->ptr);
 }
