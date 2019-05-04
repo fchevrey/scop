@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:23:59 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 15:53:05 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 17:53:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int		create_gl_buffer(t_data *data, t_parse *parse)
 	glBindVertexArray(0);
 	glEnable(GL_DEPTH_TEST);
 	data->ebo_size = (unsigned int)parse->vert_index->size; //* 3);
-	printf("ebo_size = %u\n", data->ebo_size);
 	return (1);
 }

@@ -63,7 +63,6 @@ static int		create_buf_from_list(t_int_buf *src)
 
 int				parse_obj_face(t_parse *parse, char **line)
 {
-	ft_putendl("face");
 	if (!read_face(parse, line, "f "))
 		return (0);
 /*	ft_putendl("- vertex index -");

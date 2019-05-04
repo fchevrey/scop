@@ -2,7 +2,7 @@
 
 void		render(t_data* data)
 {
-//	t_4matrix		model_tmp;
+	t_4matrix		model_tmp;
 	float			model_arr[16];
 	float			view_arr[16];
 
@@ -11,9 +11,10 @@ void		render(t_data* data)
 	//glBindTexture(GL_TEXTURE_2D, data->tex_ref);
 	glUseProgram(data->shader_prog);
 	glBindVertexArray(data->vao);
-	//model_tmp = m4_rotation(vecfl_set(1.0, 0.0, 0.5), 1.5f);
-	//data->model = m4_op(&model_tmp, '*', &data->model);
-	data->model = m4_rotation(data->rot_axe, 0.1f * (float)SDL_GetTicks());
+	model_tmp = m4_rotation(data->rot_axis, data->rot_speed);
+//	model_tmp = m4_rotation(vecfl_set(1.0, 0.0, 0.5), 1.5f);
+	data->model = m4_op(&model_tmp, '*', &data->model);
+	//data->model = m4_rotation(data->rot_axis, data->rot_speed * (float)SDL_GetTicks());
 	m4_to_float(model_arr, &data->model, 1);
 	m4_to_float(view_arr, &data->view, 1);
 	unsigned int modelLoc = glGetUniformLocation(data->shader_prog, "model");

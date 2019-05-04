@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:53:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 17:01:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 17:50:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void		init_matrix(t_data *data)
 {
 	float		proj_arr[16];
-	data->rot_axe = vecfl_set(0.0f, 0.5f, 0.0f);
-	vecfl_normalize(&data->rot_axe);
-	data->model = m4_rotation(data->rot_axe, 50.0f * (float)SDL_GetTicks());
+
+	data->rot_axis = vecfl_set(0.0f, 0.5f, 0.0f);
+	vecfl_normalize(&data->rot_axis);
+	data->model = m4_rotation(data->rot_axis,
+			data->rot_speed * (float)SDL_GetTicks());
 	data->view = m4_translate(vecfl_set(0.0f, 0.0f, -3.0f));
 	data->proj = perspective(90.0f,
 			ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f, 100.0f);

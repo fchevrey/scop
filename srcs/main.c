@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 13:25:42 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 17:55:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,6 @@ int				main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (!init_data(data))
 		return (EXIT_FAILURE);
-	ft_putendl("pouic");
 	main_loop(data);
-	///glEnable(GL_DEPTH_TEST);
-	//test_vertices(data);
-	//	test_rectangle(data);
-	//test_double_tex(data);
-//	test_3d(data);
-	//		test_two_triangle(data);
-	//ft_exit(&data);
 	return (EXIT_SUCCESS);
 }

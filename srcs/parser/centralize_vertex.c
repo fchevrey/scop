@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 16:26:34 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 16:43:10 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/04 17:53:08 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void			centralize_vertex(t_float_buf *src)
 		return ;
 	center = get_center(src->buf, src->size);
 	i = 0;
-	printf("center = [%f, %f, %f]\n", center.x, center.y, center.z);
 	while (i < src->size)
 	{
 		src->buf[i] -= center.x;
