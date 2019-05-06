@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/05/04 17:33:25 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/06 16:13:41 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ORANGE = [038;2;239;138;5
 SRCS_DIR = srcs
 
 SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
-		\
+		set_uniform_matrix.c\
 		event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
 		event/ft_mouse.c event/resize.c event/change_rotation.c\
 		event/change_rotation_speed.c\

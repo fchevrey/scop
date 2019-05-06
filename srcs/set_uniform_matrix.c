@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_matrix.c                                      :+:      :+:    :+:   */
+/*   set_uniform_matrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/01 13:53:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 16:11:29 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/06 16:08:36 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/06 16:10:35 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "scop.h"
 
-void		init_matrix(t_data *data)
+void	set_uniform_matrix(t_data *data)
 {
-	data->rot_axis = vecfl_set(0.0f, 0.5f, 0.0f);
-	vecfl_normalize(&data->rot_axis);
-	data->model = m4_rotation(data->rot_axis,
-			data->rot_speed * (float)SDL_GetTicks());
-	data->view = m4_translate(vecfl_set(0.0f, 0.0f, -3.0f));
-	data->proj = perspective(90.0f,
-			ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f, 100.0f);
-	set_uniform_matrix(data);
+	float		proj_arr[16];
+	int			i;
+
+	i = 0;
+	m4_to_float(proj_arr, &data->proj, 1);
+	while (i < RENDER_MODE_SIZE)
+	{
+		glUniformMatrix4fv(glGetUniformLocation(data->shader_prog[i],
+			"projection"), 1, GL_FALSE, proj_arr);
+		i++;
+	}
 }

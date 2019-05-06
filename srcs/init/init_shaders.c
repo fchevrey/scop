@@ -6,32 +6,80 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:25:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 15:35:14 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:23:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
-
-int			init_shaders(t_data *data)
+/*
+static unsigned int		init_prog_from_files(char *frag_filename,
+		char *vert_filename)
 {
 	unsigned int			vert_shader;
 	unsigned int			frag_shader;
+	unsigned int			shader_prog;
 	char					*frag_file;
 	char					*std_vert;
 
-	data->shader_prog = glCreateProgram();
-	//frag_file = load_shader("shaders/f_3d_tex.glsl");
-	//std_vert = load_shader("shaders/v_3d_tex.glsl");
-	//frag_file = load_shader("shaders/orange.glsl");
-	frag_file = load_shader("shaders/f_3d.glsl");
-	std_vert = load_shader("shaders/v_3d.glsl");
-	vert_shader = add_shader(std_vert, &data->shader_prog, GL_VERTEX_SHADER);
-	frag_shader = add_shader(frag_file, &data->shader_prog, GL_FRAGMENT_SHADER);
-	glLinkProgram(data->shader_prog);
-	glUseProgram(data->shader_prog);
+	shader_prog = glCreateProgram();
+	frag_file = load_shader(frag_filename);
+	std_vert = load_shader(vert_filename);
+	vert_shader = add_shader(std_vert, &shader_prog, GL_VERTEX_SHADER);
+	frag_shader = add_shader(frag_file, &shader_prog, GL_FRAGMENT_SHADER);
+	glLinkProgram(shader_prog);
+//	glUseProgram(shader_prog);
 	glDeleteShader(vert_shader);
 	glDeleteShader(frag_shader);
 	ft_strdel(&frag_file);
 	ft_strdel(&std_vert);
+	return (shader_prog);
+}
+
+static void		add_frag_shader(char *frag_filename,
+		unsigned int *shader_prog)
+{
+	unsigned int			frag_shader;
+	char					*frag_file;
+
+	frag_file = load_shader(frag_filename);
+	frag_shader = add_shader(frag_file, shader_prog, GL_FRAGMENT_SHADER);
+	glLinkProgram(*shader_prog);
+//	glUseProgram(shader_prog);
+	glDeleteShader(frag_shader);
+	ft_strdel(&frag_file);
+}
+*/
+static unsigned int		init_prog_from_v_ref(char *frag_filename,
+		const unsigned int vert_shader)
+{
+	unsigned int			frag_shader;
+	unsigned int			shader_prog;
+	char					*frag_file;
+
+	shader_prog = glCreateProgram();
+	frag_file = load_shader(frag_filename);
+	glAttachShader(shader_prog, vert_shader);
+	frag_shader = add_shader(frag_file, &shader_prog, GL_FRAGMENT_SHADER);
+	glLinkProgram(shader_prog);
+	glUseProgram(shader_prog);
+	glDeleteShader(frag_shader);
+	ft_strdel(&frag_file);
+	return (shader_prog);
+}
+
+int			init_shaders(t_data *data)
+{
+	unsigned int			basic_v_shader;
+	char					*file_content;
+
+	file_content = load_shader("shaders/v_3d.glsl");
+	basic_v_shader = add_shader(file_content, NULL, GL_VERTEX_SHADER);
+	ft_strdel(&file_content);
+	data->shader_prog[RENDER_MODE_RAINBOW] = init_prog_from_v_ref(
+			"shaders/f_3d.glsl", basic_v_shader);
+	data->shader_prog[RENDER_MODE_TEXTURE_FROM_POS] = init_prog_from_v_ref(
+			"shaders/f_tex_from_pos.glsl", basic_v_shader);
+	glDeleteShader(basic_v_shader);
+	glUseProgram(data->shader_prog[RENDER_MODE_RAINBOW]);
 	return (1);
 }
