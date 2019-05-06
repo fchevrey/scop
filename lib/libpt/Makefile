@@ -6,7 +6,7 @@
 #    By: pmiceli <pmiceli@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/25 21:12:58 by pmiceli           #+#    #+#              #
-#    Updated: 2019/04/30 15:37:57 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/06 16:53:58 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,6 @@ SRCS_NAME = ft_putcrd.c\
 			rotate_x.c\
 			rotate_y.c\
 			rotate_z.c\
-			rotate.c\
 			perspective.c\
 			m4_scale.c\
 			m4_translate.c\
