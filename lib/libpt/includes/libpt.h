@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 18:05:06 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/30 15:40:35 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:50:27 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void				vecfl_normalize(t_vecfl *src);
 float				deg_to_rad(float deg);
 float				rad_to_deg(float rad);
 t_quatfl			quatfl_set(float x, float y, float z, float w);
-t_quatfl			quatfl_form_vec(t_vecfl, float w);
+t_quatfl			quatfl_form_vec(t_vecfl src, float w);
 t_4matrix			m4_identity(void);
 t_4matrix			m4_zero(void);
 t_4matrix			m4_one(void);
@@ -109,7 +109,6 @@ t_vecfl				translate(t_vecfl src, t_vecfl factors);
 t_vecfl				rotate_x(t_vecfl src, float angle);
 t_vecfl				rotate_y(t_vecfl src, float angle);
 t_vecfl				rotate_z(t_vecfl src, float angle);
-t_vecfl				rotate(t_vecfl src, t_vecfl factors, float angle);
 t_4matrix			m4_rotation(t_vecfl axe, float angle);
 t_4matrix			perspective(float angle, t_ptfl screen,
 float near, float far);

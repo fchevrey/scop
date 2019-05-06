@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:23:40 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/25 15:05:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:51:27 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ static t_4matrix		divide(const t_4matrix *m1, const t_4matrix *m2)
 	return (dst);
 }
 
-t_4matrix		m4_op(const t_4matrix *m1, char operand, const t_4matrix *m2)
+t_4matrix				m4_op(const t_4matrix *m1, char operand,
+		const t_4matrix *m2)
 {
 	if (operand == '-')
 	{
@@ -122,5 +123,5 @@ t_4matrix		m4_op(const t_4matrix *m1, char operand, const t_4matrix *m2)
 	{
 		return (divide(m1, m2));
 	}
-	return *m1;
+	return (*m1);
 }

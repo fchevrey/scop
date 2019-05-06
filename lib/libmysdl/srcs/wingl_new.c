@@ -6,7 +6,7 @@
 /*   By: fchevrey <fchevrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:15:47 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/29 18:11:08 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 16:26:05 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_win		*wingl_new(t_point size, char *title)
 	if (!(win = (t_win*)malloc(sizeof(t_win))))
 		return (NULL);
 	if (!(win->ptr = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, \
-		SDL_WINDOWPOS_CENTERED, size.x, size.y, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL)))
+		SDL_WINDOWPOS_CENTERED, size.x, size.y,
+		SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL)))
 	{
 		ft_putstr("SDL_CreateWindow error : ");
 		ft_putendl(SDL_GetError());
