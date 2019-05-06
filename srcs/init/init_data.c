@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:33:52 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 17:50:32 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 18:11:37 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int				init_data(t_data *data)
 	data->rot_speed = 2.0f;
 	init_shaders(data);
 	init_matrix(data);
+	init_textures(data);
 	return (1);
 }

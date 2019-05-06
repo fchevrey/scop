@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/05/06 16:13:41 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/06 18:23:57 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,11 @@ SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
 		set_uniform_matrix.c\
 		event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
 		event/ft_mouse.c event/resize.c event/change_rotation.c\
-		event/change_rotation_speed.c\
+		event/change_rotation_speed.c event/change_render_mode.c\
+		event/change_textures.c\
 		\
 		init/add_shader.c init/load_shader.c init/init_data.c\
-		init/init_shaders.c init/init_matrix.c\
+		init/init_shaders.c init/init_matrix.c init/init_textures.c\
 		\
 		parser/parse.c parser/fill_funar_parse.c parser/prefix_ok.c\
 		parser/compare_prefix.c parser/parse_obj_vertex.c parser/parse_next.c\

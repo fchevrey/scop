@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:25:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 16:23:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 19:32:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int			init_shaders(t_data *data)
 			"shaders/f_3d.glsl", basic_v_shader);
 	data->shader_prog[RENDER_MODE_TEXTURE_FROM_POS] = init_prog_from_v_ref(
 			"shaders/f_tex_from_pos.glsl", basic_v_shader);
+	data->shader_prog[RENDER_MODE_TEXTURE_3D_FROM_POS] = init_prog_from_v_ref(
+			"shaders/f_tex3d_from_pos.glsl", basic_v_shader);
 	glDeleteShader(basic_v_shader);
 	glUseProgram(data->shader_prog[RENDER_MODE_RAINBOW]);
 	return (1);

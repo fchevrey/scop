@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 17:26:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/01 14:48:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 18:18:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ unsigned int	add_shader(const char *shadersource,
 void			init_matrix(t_data *data);
 int				init_shaders(t_data *data);
 int				init_data(t_data *data);
+int				init_textures(t_data *data);
 
 #endif

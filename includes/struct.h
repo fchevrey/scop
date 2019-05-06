@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 15:48:54 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/06 19:35:05 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ typedef struct		s_data
 	unsigned int	vbo;
 	unsigned int	vao;
 	unsigned int	ebo;
-	unsigned int	tex_ref;
+	unsigned int	tex_refs[TEXTURE_MAX];
 	unsigned int	ebo_size;
+	unsigned int	tex_3d;
 	short			is_texture;
 	short			is_normal;
+	int				tex_nb;
 	int				render_mode;
 	t_4matrix		model;
 	t_4matrix		view;
