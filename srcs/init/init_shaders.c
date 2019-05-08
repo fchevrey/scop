@@ -6,12 +6,12 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:25:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 19:32:00 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 17:12:22 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
-/*
+
 static unsigned int		init_prog_from_files(char *frag_filename,
 		char *vert_filename)
 {
@@ -34,7 +34,7 @@ static unsigned int		init_prog_from_files(char *frag_filename,
 	ft_strdel(&std_vert);
 	return (shader_prog);
 }
-
+/*
 static void		add_frag_shader(char *frag_filename,
 		unsigned int *shader_prog)
 {
@@ -81,6 +81,8 @@ int			init_shaders(t_data *data)
 			"shaders/f_tex_from_pos.glsl", basic_v_shader);
 	data->shader_prog[RENDER_MODE_TEXTURE_3D_FROM_POS] = init_prog_from_v_ref(
 			"shaders/f_tex3d_from_pos.glsl", basic_v_shader);
+	data->shader_prog[RENDER_MODE_UV] = init_prog_from_files(
+			"shaders/f_3d_tex.glsl", "shaders/v_scop.glsl");
 	glDeleteShader(basic_v_shader);
 	glUseProgram(data->shader_prog[RENDER_MODE_RAINBOW]);
 	return (1);

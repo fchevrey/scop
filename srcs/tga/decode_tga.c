@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 18:57:18 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/23 16:23:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 13:55:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ unsigned char			*ft_decode_tga(t_header *header,
 {
 	unsigned char	*end;
 	unsigned char	*begin;
-	int endian = find_endian();
+	int				endian;
 
+	endian = find_endian();
 	begin = image;
 	end = image + (header->x * header->y * 4);
 	if (endian == 0)

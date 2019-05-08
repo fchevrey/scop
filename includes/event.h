@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:49:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 18:22:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 16:13:32 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ void			rotation_speed_up(t_data *data);
 void			rotation_speed_down(t_data *data);
 void			change_render_mode(t_data *data);
 void			change_texture(t_data *data);
+void			change_render_mode(t_data *data);
+void			change_polygon_mode(t_data *data);
 
 #endif

@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   change_polygon_mode.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:52:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/08 17:15:02 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/08 14:41:00 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/08 16:15:23 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "event.h"
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
-# define FOV 90
-# define N_PLANE 0.1f
-# define F_PLANE 100.0f
+void		change_polygon_mode(t_data *data)
+{
+	static int		mode = 0;
 
-#define TEXTURE_MAX 4
-
-#define RENDER_MODE_RAINBOW 0
-#define RENDER_MODE_TEXTURE_FROM_POS 1
-#define RENDER_MODE_TEXTURE_3D_FROM_POS 2
-#define RENDER_MODE_UV 3
-#define RENDER_MODE_SIZE 4
-#endif
+	if (mode > 2)
+		mode = 0;
+	if (mode == 0)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else if (mode == 1)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		glPointSize(4);
+	}
+	else if (mode == 2)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	mode++;
+	if (!data)
+		return ;
+}

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 18:57:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/29 18:33:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 13:28:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,9 @@ static void				ft_fill_image(t_texture *img, unsigned char *image,
 			y++;
 			z = ((header->y - (y + 1)) * header->x) * 4;
 		}
-		pt_to_tex(pt_set(x, y), img, get_color(image[z + (x * 4) ],
-					image[z + (x * 4) + 3], image[z + (x * 4)  + 2],
+		pt_to_tex(pt_set(x, y), img, get_color(image[z + (x * 4)],
+					image[z + (x * 4) + 3], image[z + (x * 4) + 2],
 					image[z + (x * 4) + 1]));
-/*		pt_to_tex(pt_set(x, y), img, get_color(image[z + (x * 4)],
-					image[z + (x * 4) + 1], image[z + (x * 4) + 2],
-					image[z + (x * 4) + 3]));*/
 		x++;
 		i++;
 	}
@@ -90,20 +87,6 @@ static void				fill_real_size(t_header *header)
 	y.val.b = header->image_spec[7];
 	header->x = x.value;
 	header->y = y.value;
-}
-
-static t_texture	*texture_new_no_SDL(t_point size)
-{
-	t_texture			*tex;
-
-	if ((tex = (t_texture*)malloc(sizeof(t_texture))) == NULL)
-		return (NULL);
-	if (!(tex->tab_pxl = (uint32_t*)malloc(sizeof(uint32_t) * size.x * size.y)))
-		return (NULL);
-	tex->size.x = size.x;
-	tex->size.y = size.y;
-	tex->sdl_tex = NULL;
-	return (tex);
 }
 
 t_texture				*ft_load_texture(char *filename)
@@ -126,7 +109,7 @@ t_texture				*ft_load_texture(char *filename)
 	fill_real_size(&header);
 	image = ft_init_image(fd, &header);
 	image = ft_decode_tga(&header, image);
-	if (!(text = texture_new_no_SDL(pt_set(header.x, header.y))))
+	if (!(text = texture_new_no_sdl(pt_set(header.x, header.y))))
 		return (NULL);
 	ft_fill_image(text, image, &header);
 	free(image);

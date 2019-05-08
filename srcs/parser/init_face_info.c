@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 15:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 13:50:47 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 14:06:43 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdio.h>
 
-static char				*create_format(char *pref, int size)
+static char		*create_format(char *pref, int size)
 {
 	if (size == 4)
 		return (ft_strjoin(pref, "%d %d %d %d"));
@@ -25,7 +25,7 @@ static char				*create_format(char *pref, int size)
 	return (NULL);
 }
 
-int		init_face_info(char *pref, int size, t_face_info *info)
+int				init_face_info(char *pref, int size, t_face_info *info)
 {
 	if (!(info->tmp_v = (unsigned int*)malloc(sizeof(unsigned int) * 4)))
 		return (0);

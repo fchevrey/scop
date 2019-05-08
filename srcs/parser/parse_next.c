@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:46:22 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 18:56:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 14:35:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int		free_funar(t_funar_parse **funs)
 {
-	ft_putendl("parse_next exit");
 	free(*funs);
 	*funs = NULL;
 	return (0);

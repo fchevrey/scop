@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:09:38 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 18:28:11 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 16:12:52 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_funar_keyb			*fill_funar_keypress(int *size)
 
 	i = 0;
 	*size = 0;
-	nb_fct = 7;
+	nb_fct = 8;
 	if (!(tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * nb_fct)))
 		return (NULL);
 	*size = nb_fct;
@@ -42,6 +42,7 @@ t_funar_keyb			*fill_funar_keypress(int *size)
 	tab[i++] = add_one(SDLK_KP_MINUS, 0, &rotation_speed_down);
 	tab[i++] = add_one(SDLK_m, 0, &change_render_mode);
 	tab[i++] = add_one(SDLK_t, 0, &change_texture);
+	tab[i++] = add_one(SDLK_p, 0, &change_polygon_mode);
 	/*tab[i++] = add_one(SDLK_UP, 0, &check_move);
 	tab[i++] = add_one(SDLK_DOWN, 0, &check_move);
 	tab[i++] = add_one(SDLK_LEFT, 1, &look_left_from_key);

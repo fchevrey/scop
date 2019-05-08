@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 16:28:44 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 14:23:02 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				parse_obj_normal(t_parse *parse, char **line);
 int				parse_obj_texture(t_parse *parse, char **line);
 int				parse_obj_vertex(t_parse *parse, char **line);
 int				parse_next(t_parse *parse, char **line);
+int				read_face(t_parse *parse, char **line, char *pref);
 t_funar_parse	*fill_funar_parse(int *size);
 int				prefix_ok(const char *s1, char **cmp);
 int				compare_prefix(const char *s1, const char *cmp);
@@ -92,13 +93,10 @@ t_float_buf		*float_buf_new(void);
 void			free_float_buf(t_float_buf **src);
 void			del_face_info(t_face_info *info);
 int				init_face_info(char *pref, int size, t_face_info *info);
-int				read_face(t_parse *parse, char **line, char *pref);
 void			free_int_buf(t_int_buf **src);
 t_int_buf		*int_buf_new(void);
 int				create_gl_buffer(t_data *data, t_parse *parse);
 void			centralize_vertex(t_float_buf *src);
-/*int		parse_obj_face(float *faces, t_data *data);
-int		parse_obj_normal(float *normal, t_data *data);
-int		parse_obj_texture(float *texture, t_data *data);
-int		parse_obj_vertex(float *vertex, t_data *data);*/
+int				add_to_lst4(t_parse *parse, t_face_info *info,
+		int scan, int count);
 #endif

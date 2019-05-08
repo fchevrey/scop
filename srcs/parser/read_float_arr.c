@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 18:01:13 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 11:41:20 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/08 14:06:18 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdio.h>
 
-static int				parse_line(t_list *lst, t_line_info *info, char *line)
+static int		parse_line(t_list *lst, t_line_info *info, char *line)
 {
 	int		scan;
 
@@ -66,7 +66,7 @@ static int		loop(t_parse *parse, char **line, char *pref,
 	return (length);
 }
 
-int				read_float_arr(t_parse *parse, char **line, char *pref, int size)
+int			read_float_arr(t_parse *parse, char **line, char *pref, int size)
 {
 	t_line_info		info;
 	int				ret;
