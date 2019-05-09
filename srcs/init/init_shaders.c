@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:25:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 11:54:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/09 15:45:19 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,23 @@ int			init_shaders(t_data *data)
 {
 //	unsigned int			basic_v_shader;
 //	char					*file_content;
+	unsigned int		loc;
 
 /*	file_content = load_shader("shaders/v_3d.glsl");
 	basic_v_shader = add_shader(file_content, NULL, GL_VERTEX_SHADER);
 	ft_strdel(&file_content);*/
-	data->shader_prog[0] = init_prog_from_files(
-			"shaders/f_3d.glsl", "shaders/v_3d.glsl");
+	data->shader_prog = init_prog_from_files(
+			"shaders/f_scop.glsl", "shaders/v_scop.glsl");
+	loc = glGetUniformLocation(data->shader_prog, "aIs_tex");
+	glUniform1i(loc, 0);
+	loc = glGetUniformLocation(data->shader_prog, "aIs_flat");
+	glUniform1i(loc, 0);
+	loc = glGetUniformLocation(data->shader_prog, "aIs_grey");
+	glUniform1i(loc, 0);
+	loc = glGetUniformLocation(data->shader_prog, "aIs_time");
+	glUniform1i(loc, 0);
+	loc = glGetUniformLocation(data->shader_prog, "aTime");
+	glUniform1f(loc, 0.0f);
 /*	data->shader_prog[RENDER_MODE_RAINBOW] = init_prog_from_v_ref(
 			"shaders/f_3d.glsl", basic_v_shader);
 	data->shader_prog[RENDER_MODE_TEXTURE_FROM_POS] = init_prog_from_v_ref(
@@ -86,6 +97,6 @@ int			init_shaders(t_data *data)
 	data->shader_prog[RENDER_MODE_UV] = init_prog_from_files(
 			"shaders/f_3d_tex.glsl", "shaders/v_scop.glsl");*/
 //	glDeleteShader(basic_v_shader);
-	glUseProgram(data->shader_prog[RENDER_MODE_RAINBOW]);
+	glUseProgram(data->shader_prog);
 	return (1);
 }

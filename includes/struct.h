@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 19:35:05 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/09 18:00:30 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,22 @@ typedef struct		s_data
 {
 	t_win			*win;
 	SDL_GLContext	gl_ptr;
-	unsigned int	shader_prog[RENDER_MODE_SIZE];
+	unsigned int	shader_prog;
 	unsigned int	vbo;
 	unsigned int	vao;
 	unsigned int	ebo;
 	unsigned int	tex_refs[TEXTURE_MAX];
 	unsigned int	ebo_size;
 	unsigned int	tex_3d;
-	short			is_texture;
-	short			is_normal;
+	int				is_texture;
+	int				is_normal;
+	int				is_grey;
+	int				is_tex;
+	int				is_time;
+	int				is_flat;
 	int				tex_nb;
 	int				render_mode;
+	float			timer;
 	t_4matrix		model;
 	t_4matrix		view;
 	t_4matrix		proj;

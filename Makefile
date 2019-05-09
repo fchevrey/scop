@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/05/09 11:44:00 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/09 17:25:13 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c  m4_print.c\
 		event/ft_mouse.c event/resize.c event/change_rotation.c\
 		event/change_rotation_speed.c event/change_render_mode.c\
 		event/change_textures.c event/change_polygon_mode.c\
+		event/move.c event/move_z.c\
 		\
 		init/add_shader.c init/load_shader.c init/init_data.c\
 		init/init_shaders.c init/init_matrix.c init/init_textures.c\
