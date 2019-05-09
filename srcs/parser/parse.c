@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 13:31:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 17:53:19 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/09 11:33:33 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		parse(t_data *data, char *filename)
 	if ((parse.fd = open(filename, O_RDONLY | O_NOFOLLOW)) == -1)
 		return (0);
 	read_all(&parse);
-	centralize_vertex(parse.vertex_buffer);
+	parse.center = centralize_vertex(parse.vertex_buffer);
 	create_gl_buffer(data, &parse);
 	close(parse.fd);
 	free_parse(&parse);

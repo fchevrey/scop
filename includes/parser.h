@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:57:15 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/08 18:33:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/09 11:40:32 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct		s_parse
 	t_int_buf		*vert_index;
 	t_int_buf		*norm_index;
 	t_int_buf		*tex_index;
+	t_vecfl			center;
 	char			**cmp;
 }			t_parse;
 
@@ -96,7 +97,7 @@ int				init_face_info(char *pref, int size, t_face_info *info);
 void			free_int_buf(t_int_buf **src);
 t_int_buf		*int_buf_new(void);
 int				create_gl_buffer(t_data *data, t_parse *parse);
-void			centralize_vertex(t_float_buf *src);
+t_vecfl			centralize_vertex(t_float_buf *src);
 int				add_to_lst4(t_parse *parse, t_face_info *info,
 		int scan, int count);
 #endif

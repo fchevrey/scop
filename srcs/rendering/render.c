@@ -5,7 +5,7 @@ static void		set_proj_matrix(t_data *data)
 	float		proj_arr[16];
 
 	m4_to_float(proj_arr, &data->proj, 1);
-	glUniformMatrix4fv(glGetUniformLocation(data->shader_prog[data->render_mode],
+	glUniformMatrix4fv(glGetUniformLocation(data->shader_prog[0],
 			"projection"), 1, GL_FALSE, proj_arr);
 }
 
@@ -17,7 +17,8 @@ void		render(t_data* data)
 
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
-	glUseProgram(data->shader_prog[data->render_mode]);
+	//glUseProgram(data->shader_prog[data->render_mode]);
+	glUseProgram(data->shader_prog[0]);
 	set_proj_matrix(data);
 	//if (data->is_texture)
 	if (data->render_mode == RENDER_MODE_TEXTURE_3D_FROM_POS)

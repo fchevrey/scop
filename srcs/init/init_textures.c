@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:08:09 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 19:39:19 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/09 12:01:56 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int				init_textures(t_data *data)
 		ft_putendl("rainbow_unicorn load error");
 	}
 	data->tex_3d = load_3d_tex("textures/brick_cube.tga");
+	data->tex_nb = 4;
 	return (1);
 }
