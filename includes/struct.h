@@ -6,32 +6,33 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 11:21:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:29:34 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include "scop.h"
+# include "scop.h"
 
-typedef union			u_color
+typedef union		u_color
 {
-	uint32_t			c;
-	struct				s_argb
+	uint32_t		c;
+	struct			s_argb
 	{
-		uint8_t			b;
-		uint8_t			g;
-		uint8_t			r;
-		uint8_t			a;
-	}					argb;
-}						t_color;
+		uint8_t		b;
+		uint8_t		g;
+		uint8_t		r;
+		uint8_t		a;
+	}				argb;
+}					t_color;
 
 typedef struct		s_data
 {
 	t_win			*win;
 	SDL_GLContext	gl_ptr;
 	unsigned int	shader_prog;
+	unsigned int	progs[SHADER_PROG_SIZE];
 	unsigned int	vbo;
 	unsigned int	vao;
 	unsigned int	ebo;
@@ -45,6 +46,7 @@ typedef struct		s_data
 	int				is_time;
 	int				is_flat;
 	int				is_3dtex;
+	int				is_dbtex;
 	int				tex_nb;
 	float			timer;
 	t_4matrix		model;

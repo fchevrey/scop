@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 14:25:35 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 12:19:23 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:38:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,11 @@ static unsigned int		init_prog_from_files(char *frag_filename,
 
 int						init_shaders(t_data *data)
 {
-	unsigned int		loc;
-
-	data->shader_prog = init_prog_from_files(
+	data->progs[0] = init_prog_from_files(
 			"shaders/f_scop.glsl", "shaders/v_scop.glsl");
-	loc = glGetUniformLocation(data->shader_prog, "aIs_tex");
-	glUniform1i(loc, 0);
-	loc = glGetUniformLocation(data->shader_prog, "aIs_flat");
-	glUniform1i(loc, 1);
-	loc = glGetUniformLocation(data->shader_prog, "aIs_grey");
-	glUniform1i(loc, 0);
-	loc = glGetUniformLocation(data->shader_prog, "aIs_time");
-	glUniform1i(loc, 0);
-	loc = glGetUniformLocation(data->shader_prog, "aIs_3dtex");
-	glUniform1i(loc, 0);
-	loc = glGetUniformLocation(data->shader_prog, "aTime");
-	glUniform1f(loc, 0.0f);
+	data->progs[1] = init_prog_from_files(
+			"shaders/f_tex3d_from_pos.glsl", "shaders/v_3d_tex.glsl");
+	data->shader_prog = data->progs[0];
 	glUseProgram(data->shader_prog);
 	return (1);
 }

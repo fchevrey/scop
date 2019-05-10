@@ -1,12 +1,11 @@
-
 #version 410 core
 //FRAGMENT SHADER
 
 out vec4 FragColor;
 
-in vec3 pos;
+in			vec3	pos;
+smooth in	vec3	color;
 
-//uniform sampler2D ourTexture;
 uniform samplerCube ourTexture;
 
 void main()

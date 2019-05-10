@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:35:31 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/08 13:54:04 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:26:41 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ typedef union			u_fill
 	}					val;
 }						t_fill;
 
-//int						ft_load_texture(int *endian, char *str, t_texture *img);
 t_texture				*ft_load_texture(char *filename);
 unsigned char			*ft_decode_tga(t_header *header, unsigned char *image);
 int						load_gl_texture(unsigned int *text_number,
-		char *filename);
+		char *filename, int repeat);
 t_texture				*texture_new_no_sdl(t_point size);
 
 /*

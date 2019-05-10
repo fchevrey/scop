@@ -8,10 +8,12 @@ uniform		mat4	model;
 uniform		mat4	view;
 uniform		mat4	projection;
 uniform		int		aIs_tex;
+uniform		int		aIs_dbtex;
 uniform		int		aIs_flat;
 uniform		int		aIs_grey;
 uniform		int		aIs_time;
-uniform		int		aIs_3dtex;
+uniform		int		aIs_Blend;
+uniform		int		tex;
 uniform		float	aTime;
 uniform		float	aBlend;
 
@@ -22,7 +24,8 @@ flat out	int		is_tex;
 flat out	int		is_flat;
 flat out	int		is_grey;
 flat out	int		is_time;
-flat out	int		is_3dtex;
+flat out	int		is_blend;
+flat out	int		is_dbtex;
 flat out	float	time;
 flat out	float	blend;
 
@@ -34,8 +37,9 @@ void main()
 	is_grey = aIs_grey;
 	is_tex = aIs_tex;
 	is_flat = aIs_flat;
-	is_3dtex = aIs_3dtex;
+	is_dbtex = aIs_dbtex;
 	is_time = aIs_time;
+	is_blend = aIs_Blend;
 	s_color = aColor;
 	blend = aBlend;
 	if (is_time == 1)
