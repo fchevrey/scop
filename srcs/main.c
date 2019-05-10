@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 12:43:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 19:08:26 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,29 @@ static int		init_library(t_data *data)
 	return (init_gl_context(data, size));
 }
 
+static int		check_file_extension(char *filename)
+{
+	char	*dst;
+
+	if (!(dst = ft_strrchr(filename, '.')))
+		return (0);
+	return (1);
+}
+
 int				main(int ac, char **av)
 {
 	t_data		*data;
 
 	if (ac != 2)
 		return (ft_error("usage : ./scop filename", NULL, NULL));
+	if (!check_file_extension(av[1]))
+		return (ft_error("file extension error", NULL, NULL));
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (EXIT_FAILURE);
 	if (!init_library(data))
 		return (EXIT_FAILURE);
 	if (!parse(data, av[1]))
-		return (EXIT_FAILURE);
+		return (ft_error("file error", NULL, NULL));
 	if (!init_data(data))
 		return (EXIT_FAILURE);
 	main_loop(data);

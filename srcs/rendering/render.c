@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 18:39:54 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 18:42:03 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:56:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void			render(t_data *data)
 	t_4matrix		model_tmp;
 	float			model_arr[16];
 	float			view_arr[16];
-	unsigned int	mode_loc;
+	unsigned int	model_loc;
 	unsigned int	view_loc;
 
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

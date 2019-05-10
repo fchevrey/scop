@@ -6,9 +6,11 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:08:52 by fchevrey          #+#    #+#             */
-/*   Updated: 2017/11/21 18:59:46 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:50:24 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <string.h>
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
@@ -35,5 +37,5 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		if (needle[j] == '\0')
 			return ((char*)haystack + result);
 	}
-	return (0);
+	return (NULL);
 }

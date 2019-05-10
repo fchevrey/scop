@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:23:59 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 12:52:36 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 19:09:25 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static int		create_vao(t_data *data, t_parse *parse)
 
 int				create_gl_buffer(t_data *data, t_parse *parse)
 {
+	if (!parse->vertex_buffer->buf || !parse->vert_index->buf)
+		return (0);
 	glGenBuffers(1, &data->ebo);
 	create_vao(data, parse);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, data->ebo);
