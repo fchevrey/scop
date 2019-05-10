@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 15:30:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/08 14:06:43 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:53:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ static char		*create_format(char *pref, int size)
 	if (size == 8)
 		return (ft_strjoin(pref, "%d/%d %d/%d %d/%d %d/%d"));
 	if (size == 12)
+	{
 		return (ft_strjoin(pref,
-					"%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d"));
+			"%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d"));
+	}
 	return (NULL);
 }
 

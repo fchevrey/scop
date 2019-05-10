@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:53:10 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 16:11:29 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:41:00 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void		init_matrix(t_data *data)
 	data->view = m4_translate(vecfl_set(0.0f, 0.0f, -3.0f));
 	data->proj = perspective(90.0f,
 			ptfl_set((float)WIN_WIDTH, (float)WIN_HEIGHT), 0.1f, 100.0f);
-	set_uniform_matrix(data);
+	set_projection_matrix(data);
 }

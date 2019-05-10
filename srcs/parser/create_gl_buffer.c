@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:23:59 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 11:32:02 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:52:36 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void		cpy_buf(float *dst, float *src, size_t len, t_parse *parse)
 
 	i = 0;
 	j = 0;
-	printf("begin\n");
 	while (i < (len - 3))
 	{
 		dst[i + 0] = src[j];
@@ -32,7 +31,6 @@ static void		cpy_buf(float *dst, float *src, size_t len, t_parse *parse)
 		i += 6;
 		j += 3;
 	}
-	printf("end\n");
 }
 
 static int		create_vao(t_data *data, t_parse *parse)
@@ -44,12 +42,14 @@ static int		create_vao(t_data *data, t_parse *parse)
 	glBindVertexArray(data->vao);
 	glGenBuffers(1, &data->vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, data->vbo);
-	size_vert = (sizeof(float))  * parse->vertex_buffer->size * 2;
+	size_vert = (sizeof(float)) * parse->vertex_buffer->size * 2;
 	buffer = (float*)malloc(size_vert);
-	cpy_buf(buffer, parse->vertex_buffer->buf, parse->vertex_buffer->size * 2, parse);
+	cpy_buf(buffer, parse->vertex_buffer->buf,
+			parse->vertex_buffer->size * 2, parse);
 	glBufferData(GL_ARRAY_BUFFER, size_vert,
 			buffer, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+			(void*)0);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
 			(void*)(3 * sizeof(float)));
@@ -72,8 +72,7 @@ int				create_gl_buffer(t_data *data, t_parse *parse)
 	glBindVertexArray(0);
 	glEnable(GL_DEPTH_TEST);
 	data->ebo_size = (unsigned int)parse->vert_index->size;
-	data->render_mode = RENDER_MODE_RAINBOW;
-	data->is_texture = (short)parse->is_texture;
-	data->is_normal = (short)parse->is_normal;
+	data->is_texture = parse->is_texture;
+	data->is_normal = parse->is_normal;
 	return (1);
 }

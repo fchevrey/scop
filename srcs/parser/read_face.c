@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:31:05 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/08 14:24:18 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:47:49 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdio.h>
 
-static int				add_to_lst3(t_parse *parse, t_face_info *info, int scan)
+static int		add_to_lst3(t_parse *parse, t_face_info *info, int scan)
 {
 	t_list		*elem;
 
@@ -42,7 +42,7 @@ static int				add_to_lst3(t_parse *parse, t_face_info *info, int scan)
 	return (1);
 }
 
-static int				parse_line(t_parse *parse, t_face_info *info, char *line)
+static int		parse_line(t_parse *parse, t_face_info *info, char *line)
 {
 	int		scan;
 
@@ -86,7 +86,7 @@ static int		loop(t_parse *parse, char **line, char *pref,
 		if (!compare_prefix(*line, pref))
 		{
 			if (prefix_ok(*line, parse->cmp) >= 0)
-				break;
+				break ;
 			ft_strdel(line);
 			continue;
 		}

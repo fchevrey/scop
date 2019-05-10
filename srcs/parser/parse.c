@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 13:31:29 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 11:33:33 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:45:58 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		read_all(t_parse *parse)
 		while ((parse->parse_type = prefix_ok(line, parse->cmp)) != -1)
 		{
 			if (!parse_next(parse, &line))
-				break;
+				break ;
 		}
 		ft_strdel(&line);
 	}
@@ -34,7 +34,7 @@ static int		read_all(t_parse *parse)
 	return (1);
 }
 
-static void			free_parse(t_parse *parse)
+static void		free_parse(t_parse *parse)
 {
 	ft_tabdel(&parse->cmp);
 	if (parse->buf_lst)
@@ -52,7 +52,8 @@ static void			free_parse(t_parse *parse)
 	if (parse->tex_index)
 		free_int_buf(&parse->tex_index);
 }
-static int			parse_init(t_parse *parse)
+
+static int		parse_init(t_parse *parse)
 {
 	parse->cmp = NULL;
 	parse->buf_lst = NULL;
@@ -73,7 +74,7 @@ static int			parse_init(t_parse *parse)
 	return (1);
 }
 
-int		parse(t_data *data, char *filename)
+int				parse(t_data *data, char *filename)
 {
 	t_parse		parse;
 

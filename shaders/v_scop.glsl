@@ -4,27 +4,27 @@
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
 
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
-uniform int aIs_tex;
-uniform int aIs_flat;
-uniform int aIs_grey;
-uniform int aIs_time;
-uniform float aTime;
-uniform float aBlend;
+uniform		mat4	model;
+uniform		mat4	view;
+uniform		mat4	projection;
+uniform		int		aIs_tex;
+uniform		int		aIs_flat;
+uniform		int		aIs_grey;
+uniform		int		aIs_time;
+uniform		int		aIs_3dtex;
+uniform		float	aTime;
+uniform		float	aBlend;
 
 out			vec3	pos;
 flat out	vec3	color;
 smooth out	vec3	s_color;
-//flat out int is_time;
 flat out	int		is_tex;
 flat out	int		is_flat;
 flat out	int		is_grey;
 flat out	int		is_time;
+flat out	int		is_3dtex;
 flat out	float	time;
 flat out	float	blend;
-//out vec2 tex_crd;
 
 void main()
 {
@@ -34,6 +34,7 @@ void main()
 	is_grey = aIs_grey;
 	is_tex = aIs_tex;
 	is_flat = aIs_flat;
+	is_3dtex = aIs_3dtex;
 	is_time = aIs_time;
 	s_color = aColor;
 	blend = aBlend;

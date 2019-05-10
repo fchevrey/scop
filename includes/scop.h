@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:53:17 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/06 16:12:39 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:40:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void			test_double_tex(t_data *data);
 void			malloc_failed(char *str);
 void			test_3d(t_data *data);
 void			m4_print(t_4matrix m);
-void			set_uniform_matrix(t_data *data);
+void			set_projection_matrix(t_data *data);
 
 #endif

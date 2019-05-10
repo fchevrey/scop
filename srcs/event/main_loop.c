@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:27:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 17:29:57 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:34:40 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ static int		ft_event(SDL_Event *event, t_data *data)
 			return (1);
 		else if (event->type == SDL_KEYDOWN || event->type == SDL_KEYUP)
 			ft_keyboard(event->key.keysym.sym, event->key.repeat, event, data);
-		/*else if (event->type == SDL_MOUSEMOTION)
-			ft_mouse(event->motion.x, event->motion.y, data);
-		else if (event->type == SDL_MOUSEBUTTONDOWN &&
-				event->button.button == SDL_BUTTON_LEFT)
-			play_shot_sound(data);*/
 		else if (event->type == SDL_WINDOWEVENT && event->window.event
 				== SDL_WINDOWEVENT_CLOSE)
 		{

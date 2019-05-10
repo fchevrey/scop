@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:08:09 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 12:01:56 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:20:57 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ unsigned int	load_3d_tex(char *filename)
 		return (0);
 	glGenTextures(1, &tex_nb);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, tex_nb);
-	// définit les options de la texture actuellement liée
-	/*glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);*/
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -44,11 +39,8 @@ unsigned int	load_3d_tex(char *filename)
 			txt->size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt->tab_pxl);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA, txt->size.x,
 			txt->size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt->tab_pxl);
-	//	glTexImage2D(GL_TEXTURE_2D, 0, GL_BGRA, txt->size.x, txt->size.y,
-	//	0, GL_BGRA, GL_UNSIGNED_BYTE, txt->tab_pxl);
-	//glGenerateMipmap(GL_TEXTURE_2D);
 	free_tex(&txt);
-	return (1);
+	return (tex_nb);
 }
 
 int				init_textures(t_data *data)
@@ -64,11 +56,10 @@ int				init_textures(t_data *data)
 		ft_putendl("container load error");
 	}
 	if (!load_gl_texture(&data->tex_refs[2], "textures/rainbow_unicorn.tga"))
-		//	if (!load_gl_texture(&data->tex_refs[2], "textures/smiley.tga"))
+	//	if (!load_gl_texture(&data->tex_refs[2], "textures/smiley.tga"))
 	{
 		ft_putendl("smiley load error");
 	}
-	//	if (!load_gl_texture(&data->tex_refs[3], "textures/rainbow_unicorn.tga"))
 	if (!load_gl_texture(&data->tex_refs[3], "textures/skulls.tga"))
 	{
 		ft_putendl("rainbow_unicorn load error");

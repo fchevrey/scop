@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 16:26:34 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 11:39:53 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:52:59 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static t_vecfl		get_center(float *buf, size_t size)
 	return (center);
 }
 
-t_vecfl			centralize_vertex(t_float_buf *src)
+t_vecfl				centralize_vertex(t_float_buf *src)
 {
 	t_vecfl		center;
 	size_t		i;
 
 	if (src->size < 3)
-		return (vecfl_set(1.0f, 1.0f, 1.0f)) ;
+		return (vecfl_set(1.0f, 1.0f, 1.0f));
 	center = get_center(src->buf, src->size);
 	i = 0;
 	while (i < src->size)

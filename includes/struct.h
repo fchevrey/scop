@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:54:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 18:00:30 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 11:21:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct		s_data
 	int				is_tex;
 	int				is_time;
 	int				is_flat;
+	int				is_3dtex;
 	int				tex_nb;
-	int				render_mode;
 	float			timer;
 	t_4matrix		model;
 	t_4matrix		view;

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:09:38 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 17:33:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:34:28 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,5 @@ t_funar_keyb			*fill_funar_keypress(int *size)
 	tab[i++] = add_one(SDLK_d, 1, &move_right);
 	tab[i++] = add_one(SDLK_q, 1, &move_front);
 	tab[i++] = add_one(SDLK_e, 1, &move_back);
-	return (tab);
-}
-
-t_funar_keyb			*fill_funar_keyrelease(int *size)
-{
-	t_funar_keyb	*tab;
-	int				nb_fct;
-	int				i;
-
-	i = 0;
-	*size = 0;
-	nb_fct = 8;
-	return (NULL);
-	if (!(tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * nb_fct)))
-		return (NULL);
-	*size = nb_fct;
-	/*tab[i++] = add_one(SDLK_UP, 0, &check_move);
-	tab[i++] = add_one(SDLK_DOWN, 0, &check_move);
-	tab[i++] = add_one(SDLK_LEFT, 0, &check_move);
-	tab[i++] = add_one(SDLK_RIGHT, 0, &check_move);
-	tab[i++] = add_one(SDLK_w, 0, &check_move);
-	tab[i++] = add_one(SDLK_s, 0, &check_move);
-	tab[i++] = add_one(SDLK_a, 0, &check_move);
-	tab[i++] = add_one(SDLK_d, 0, &check_move);*/
 	return (tab);
 }

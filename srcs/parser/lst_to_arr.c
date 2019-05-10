@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 19:50:20 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/02 19:55:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:50:12 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		fill(t_list *lst, float *arr)
 	}
 }
 
-size_t			lst_to_arr(t_list	*lst, float **to_fill)
+size_t			lst_to_arr(t_list *lst, float **to_fill)
 {
 	size_t		size;
 

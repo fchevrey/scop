@@ -6,13 +6,13 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 14:19:21 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/08 14:30:47 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:48:51 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static	void			reorder_tmp(t_face_info *info)
+static void		reorder_tmp(t_face_info *info)
 {
 	info->tmp_v[0] = info->tmp_v[0];
 	info->tmp_v[1] = info->tmp_v[2];
@@ -60,5 +60,5 @@ int				add_to_lst4(t_parse *parse, t_face_info *info,
 		ft_lstadd_last(parse->norm_index->lst, elem);
 	}
 	reorder_tmp(info);
-	return (add_to_lst4(parse, info, scan, count -1));
+	return (add_to_lst4(parse, info, scan, count - 1));
 }

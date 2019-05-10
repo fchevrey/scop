@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   m4_print.c                                         :+:      :+:    :+:   */
+/*   set_uniform_matrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 19:54:37 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/04/25 20:07:26 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/06 16:08:36 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/10 12:43:07 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "scop.h"
 
-void		m4_print(t_4matrix m)
+void	set_projection_matrix(t_data *data)
 {
-	int				x;
+	float		proj_arr[16];
 
-	x = 0;
-	while (x < 4)
-	{
-		printf("%d [ %f %f %f %f ]\n", x, m.n[x][0], m.n[x][1], m.n[x][2], m.n[x][3]);
-		x++;
-	}
+	m4_to_float(proj_arr, &data->proj, 1);
+	glUniformMatrix4fv(glGetUniformLocation(data->shader_prog,
+			"projection"), 1, GL_FALSE, proj_arr);
 }

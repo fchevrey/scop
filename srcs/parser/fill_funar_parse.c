@@ -6,14 +6,14 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:29:57 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/04 12:08:06 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:53:20 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdlib.h>
 
-static t_funar_parse		add_one(int key, int (*f)(t_parse*, char **))
+static t_funar_parse	add_one(int key, int (*f)(t_parse*, char **))
 {
 	t_funar_parse	item;
 

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 18:57:28 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/09 11:51:25 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 12:15:53 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void				ft_fill_image(t_texture *img, unsigned char *image,
 	y = 0;
 	z = ((header->y - 1) * (header->x)) * 4;
 	i = 0;
-	while (i < ((header->x * header->y )))//+1
+	while (i < ((header->x * header->y)))
 	{
 		if (x > header->x - 1)
 		{
