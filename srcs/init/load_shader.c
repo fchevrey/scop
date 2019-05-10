@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 17:23:39 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 12:19:45 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/10 19:14:21 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ char			*load_shader(char *filename)
 	get_next_line(fd, &line);
 	if (!test_first_lign(line))
 		return (close_exit(fd));
-	dst = ft_strjoin(line, "\n");
+	if (!(dst = ft_strjoin(line, "\n")))
+		return (NULL);
 	ft_strdel(&line);
 	while (get_next_line(fd, &line) > 0)
 	{
-		dst = ft_strjoin3f(dst, line, "\n");
+		if (!(dst = ft_strjoin3f(dst, line, "\n")))
+			return (NULL);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
