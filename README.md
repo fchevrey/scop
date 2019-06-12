@@ -16,7 +16,7 @@ the controls are as follow :
 - x, y, z : to ratate in the differents axis (tap twice to change direction)
 - z q s d : to move the object.
 - a and e : to move the object front and back
-- * /     : to change the rotation speed
+- '*' '/'     : to change the rotation speed
 - m       : the change the display mode (black & white, color, texture)
 - t       : change texture
 - p       : change the primitive
