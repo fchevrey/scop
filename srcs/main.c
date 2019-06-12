@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:24:01 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 19:08:26 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/13 15:47:03 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,26 @@ static int		check_file_extension(char *filename)
 	return (1);
 }
 
+static void		display_controls(void)
+{
+	ft_putendl("W : move up");
+	ft_putendl("S : move down");
+	ft_putendl("A : move left");
+	ft_putendl("D : move right");
+	ft_putendl("Q : move front");
+	ft_putendl("E : move back");
+	ft_putendl("X : rotate in x axis");
+	ft_putendl("Y : rotate in y axis");
+	ft_putendl("Z : rotate in z axis");
+	ft_putendl("+ : rotation speed up");
+	ft_putendl("- : rotation speed down");
+	ft_putendl("M : change render mode");
+	ft_putendl("P : change polygon mode");
+	ft_putendl("T : change texture");
+	ft_putendl("R : reload shaders");
+	ft_putendl("I : reset position and rotation");
+}
+
 int				main(int ac, char **av)
 {
 	t_data		*data;
@@ -82,6 +102,7 @@ int				main(int ac, char **av)
 		return (ft_error("file error", NULL, NULL));
 	if (!init_data(data))
 		return (EXIT_FAILURE);
+	display_controls();
 	main_loop(data);
 	return (EXIT_SUCCESS);
 }

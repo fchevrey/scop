@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   change_rotation_speed.c                            :+:      :+:    :+:   */
+/*   reload_shaders.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/04 17:30:26 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/13 15:48:14 by fchevrey         ###   ########.fr       */
+/*   Created: 2019/05/13 15:24:32 by fchevrey          #+#    #+#             */
+/*   Updated: 2019/05/13 16:55:46 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event.h"
+#include "init.h"
 
-void		rotation_speed_up(t_data *data)
+void		reload_shaders(t_data *data)
 {
-	data->rot_speed += 1.0f;
-}
+	int		i;
 
-void		rotation_speed_down(t_data *data)
-{
-	data->rot_speed -= 1.0f;
-	if (data->rot_speed < 0.00f)
-		data->rot_speed = 0.0f;
+	i = 0;
+	while (i < SHADER_PROG_SIZE)
+	{
+		glDeleteProgram(data->progs[i]);
+		i++;
+	}
+	if (!init_shaders(data))
+	{
+		ft_putendl("shader load error");
+	}
 }

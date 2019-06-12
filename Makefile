@@ -6,7 +6,7 @@
 #    By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/13 16:05:39 by fchevrey          #+#    #+#              #
-#    Updated: 2019/05/10 19:01:39 by fchevrey         ###   ########.fr        #
+#    Updated: 2019/05/13 17:01:17 by fchevrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,13 @@ ORANGE = [038;2;239;138;5
 ## Sources ##
 SRCS_DIR = srcs
 
-SRCS = main.c ft_error.c ft_exit.c glad.c malloc_failed.c set_projection_matrix.c\
+SRCS = main.c ft_error.c ft_exit.c malloc_failed.c set_projection_matrix.c\
 		\
 		event/main_loop.c event/fill_funar_key_event.c event/ft_keyboard.c\
-		event/resize.c event/change_rotation.c\
+		event/resize.c event/change_rotation.c event/reset_position.c\
 		event/change_rotation_speed.c event/change_render_mode.c\
 		event/change_textures.c event/change_polygon_mode.c\
-		event/move.c event/move_z.c\
+		event/move.c event/move_z.c event/reload_shaders.c\
 		\
 		init/add_shader.c init/load_shader.c init/init_data.c\
 		init/init_shaders.c init/init_matrix.c init/init_textures.c\
@@ -66,11 +66,9 @@ LIBPT_DIR = $(LIB_DIR)/libpt
 
 ## Macros for extern library installation ##
 SDL_VER = 2.0.9
-GLFW_VER = 3.2.1
 
 MAIN_DIR_PATH = $(shell pwd)
 SDL_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/sdl2)
-GLFW_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/glfw-$(GLFW_VER))
 GLAD_PATH = $(addprefix $(MAIN_DIR_PATH), /lib/glad)
 
 HEADER_DIR = includes/
@@ -101,6 +99,7 @@ LFLAGS =	-L $(LIBFT_DIR) -lft \
 			-L $(LIBPT_DIR) -lpt \
 			-L $(LIBMYSDL_DIR) -lmysdl \
 			-lm \
+			$(GLAD_PATH)/glad.c\
 			$(SDL2_LFLAGS)
 	
 #			-L $(GLFW_PATH)/lib/ -lGLEW

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 16:49:51 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 18:26:13 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/13 15:43:16 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void			change_render_mode(t_data *data);
 void			change_texture(t_data *data);
 void			change_render_mode(t_data *data);
 void			change_polygon_mode(t_data *data);
+void			reload_shaders(t_data *data);
+void			reset_position(t_data *data);
 
 void			move_down(t_data *data);
 void			move_up(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: fchevrey <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 14:09:38 by fchevrey          #+#    #+#             */
-/*   Updated: 2019/05/10 12:34:28 by fchevrey         ###   ########.fr       */
+/*   Updated: 2019/05/13 15:42:48 by fchevrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ static t_funar_keyb		add_one(int key, int repeat, void (*f)(t_data*))
 t_funar_keyb			*fill_funar_keypress(int *size)
 {
 	t_funar_keyb	*tab;
-	int				nb_fct;
 	int				i;
 
 	i = 0;
-	nb_fct = 14;
-	if (!(tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * nb_fct)))
+	*size = 16;
+	if (!(tab = (t_funar_keyb*)malloc(sizeof(t_funar_keyb) * *size)))
 		return (NULL);
-	*size = nb_fct;
 	tab[i++] = add_one(SDLK_x, 0, &rotate_in_x_axis);
 	tab[i++] = add_one(SDLK_y, 0, &rotate_in_y_axis);
 	tab[i++] = add_one(SDLK_z, 0, &rotate_in_z_axis);
@@ -48,5 +46,7 @@ t_funar_keyb			*fill_funar_keypress(int *size)
 	tab[i++] = add_one(SDLK_d, 1, &move_right);
 	tab[i++] = add_one(SDLK_q, 1, &move_front);
 	tab[i++] = add_one(SDLK_e, 1, &move_back);
+	tab[i++] = add_one(SDLK_r, 0, &reload_shaders);
+	tab[i++] = add_one(SDLK_i, 0, &reset_position);
 	return (tab);
 }
