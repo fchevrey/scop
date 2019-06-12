@@ -29,3 +29,6 @@ As requested on the subject there is a smooth changing from color to texture and
 ![alt text](https://github.com/fchevrey/scop/blob/master/screenshots/Screen%20Shot%202019-06-07%20at%209.28.40%20AM.png)
 ![alt text](https://github.com/fchevrey/scop/blob/master/screenshots/Screen%20Shot%202019-06-07%20at%209.29.11%20AM.png)
 ![alt text](https://github.com/fchevrey/scop/blob/master/screenshots/Screen%20Shot%202019-06-07%20at%209.30.19%20AM.png)
+![alt text](https://github.com/fchevrey/scop/blob/master/screenshots/Screen%20Shot%202019-06-07%20at%209.31.18%20AM.png)
+![alt text](https://github.com/fchevrey/scop/blob/master/screenshots/Screen%20Shot%202019-06-07%20at%209.32.07%20AM.png)
+![alt text](https://github.com/fchevrey/scop/blob/master/screenshots/Screen%20Shot%202019-06-07%20at%209.32.15%20AM.png)
